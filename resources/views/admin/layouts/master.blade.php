@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin/assets/css/header-colors.css') }}" />
+    <!-- toastr CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
     <title>@yield('title') | Food Park Dashboard</title>
 </head>
 
@@ -64,7 +66,15 @@
     <script src="{{ asset('admin/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script>
+        // Munculkan error dengan menggunakan toastr
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
+
         $(function() {
             $(".knob").knob();
         });
