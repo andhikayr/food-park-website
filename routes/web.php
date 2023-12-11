@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,17 +20,15 @@ Route::get('/', [FrontendController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+})->middleware('auth')->name('dashboard');
 
 Route::prefix('admin')->as('admin.')->group(function () {
-    Route::get('login', function () {
-        return view('admin.login');
+    Route::get('login', [DashboardController::class, 'login']);
+    Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
+        Route::prefix('profile')->as('profile.')->controller(ProfileController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::put('/update', 'updateProfile')->name('updateProfile');
+        });
     });
 });
 
