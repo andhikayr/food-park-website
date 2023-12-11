@@ -36,8 +36,8 @@
                 </ul>
             </div>
             <div class="user-box dropdown">
-                <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
-                    href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="{{ asset('admin/assets/images/avatars/avatar-2.png') }}" class="user-img"
                         alt="user avatar">
                     <div class="user-info ps-3">
@@ -46,11 +46,9 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="javascript:;"><i
-                                class="bx bx-user"></i><span>Profile</span></a>
+                    <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
                     </li>
-                    <li><a class="dropdown-item" href="javascript:;"><i
-                                class="bx bx-cog"></i><span>Settings</span></a>
+                    <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
                     </li>
                     <li><a class="dropdown-item" href="javascript:;"><i
                                 class='bx bx-home-circle'></i><span>Dashboard</span></a>
@@ -65,11 +63,12 @@
                         <div class="dropdown-divider mb-0"></div>
                     </li>
                     <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                            class='bx bx-log-out-circle'></i>Logout</a>
 
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><i
-                                class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
                         </form>
                     </li>
                 </ul>
