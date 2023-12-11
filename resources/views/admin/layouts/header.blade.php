@@ -64,8 +64,13 @@
                     <li>
                         <div class="dropdown-divider mb-0"></div>
                     </li>
-                    <li><a class="dropdown-item" href="javascript:;"><i
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><i
                                 class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                        </form>
                     </li>
                 </ul>
             </div>

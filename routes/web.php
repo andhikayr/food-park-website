@@ -28,6 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix('admin')->as('admin.')->group(function () {
+    Route::get('login', function () {
+        return view('admin.login');
+    });
+});
+
 Route::get('admin/dashboard', [DashboardController::class, 'index'])->middleware(['auth','role:superadmin,admin'])->name('admin.dashboard');
 
 require __DIR__.'/auth.php';
