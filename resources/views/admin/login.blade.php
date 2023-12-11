@@ -14,6 +14,8 @@
 	<link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('admin/assets/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('admin/assets/css/icons.css') }}" rel="stylesheet">
+    <!-- toastr CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 	<title>Login</title>
 </head>
 
@@ -34,7 +36,8 @@
 										<h3 class="">Sign in</h3>
 									</div>
 									<div class="form-body">
-										<form class="row g-3">
+										<form class="row g-3" method="POST" action="{{ route('login') }}">
+                                            @csrf
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email</label>
 												<input type="email" class="form-control" id="inputEmailAddress" placeholder="Email" name="email">
@@ -42,7 +45,7 @@
 											<div class="col-12">
 												<label for="inputChoosePassword" class="form-label">Password</label>
 												<div class="input-group" id="show_hide_password">
-													<input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+													<input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Password" name="password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -72,6 +75,7 @@
 	<script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
 	<script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 	<!--Password show & hide js -->
 	<script>
 		$(document).ready(function () {
@@ -88,6 +92,11 @@
 				}
 			});
 		});
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
 	</script>
 	<!--app JS-->
 	<script src="{{ asset('admin/assets/js/app.js') }}"></script>
