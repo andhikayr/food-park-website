@@ -18,11 +18,16 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request) : RedirectResponse {
         $request->validate([
+            'image' => 'image|max:1024|mimes:png,jpg,jpeg',
             'name' => 'required|max:255',
-            'email' => 'required|max:255|email'
+            'email' => 'required|max:255|email|unique:users,email,'. Auth::user()->id
         ]);
 
         $admin = Auth::user();
+
+        $imageName = 'user_' . date('YmdHis') . '.' . $request->file('image')->extension();
+        $request->file('image')->move(public_path() . '/admin/uploads/profile_image', $imageName);
+        $admin['image'] = $imageName;
 
         $admin->update([
             'name' => $request->name,

@@ -13,20 +13,29 @@
                 <div class="card-body">
                     <div class="p-4 border rounded">
                         <h3>Ubah Data Profil</h3>
-                        <form method="POST" class="row g-3 needs-validation"
-                            action="{{ route('admin.profile.updateProfile') }}" novalidate>
+                        <form method="POST" class="row g-3" action="{{ route('admin.profile.updateProfile') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            <div class="col-12">
+                                <label for="image"></label>
+                                <input class="dropify-id" class="form-control" type="file" name="image" id="image"
+                                    accept="image/jpg, image/png, image/jpeg" data-max-file-size="1M"
+                                    data-allowed-file-extensions="jpg jpeg png" data-default-file="{{ asset('admin/uploads/profile_image/'. Auth::user()->image) }}">
+                                <p class="text-secondary mb-0 mt-3">* Ukuran gambar tidak boleh lebih dari 1 MB. Format
+                                    gambar yang diizinkan : JPG, JPEG, PNG</p>
+
+                            </div>
                             <div class="col-md-6">
-                                <label for="validationCustom01" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="validationCustom01"
-                                    value="{{ Auth::user()->name }}" name="name" required>
+                                <label for="name" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="name" value="{{ Auth::user()->name }}"
+                                    name="name" required>
                                 <div class="invalid-feedback">Kolom ini harus diisi!</div>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="validationCustom02"
-                                    value="{{ Auth::user()->email }}" name="email" required>
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}"
+                                    name="email" required>
                                 <div class="invalid-feedback">Kolom email harus diisi dengan valid!</div>
                             </div>
                             <div class="col-12">
@@ -66,9 +75,9 @@
                                 <label for="password_confirmation" class="form-label">Konfirmasi password</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password_confirmation" required
-                                    name="password_confirmation">
+                                        name="password_confirmation">
                                     <span class="input-group-text" id="togglePassword3" onclick="togglePassword3"><i
-                                        id="togglePasswordIcon3" class="fas fa-eye"></i></span>
+                                            id="togglePasswordIcon3" class="fas fa-eye"></i></span>
                                 </div>
 
                             </div>
@@ -86,19 +95,19 @@
 
 @push('scripts')
     <script>
-
+        // Toggle ikon show / hide password
         window.onload = function() {
-            var password1 = document.getElementById("current_password");
-            var togglePassword1 = document.getElementById("togglePassword1");
-            var togglePasswordIcon1 = document.getElementById("togglePasswordIcon1");
+            let password1 = document.getElementById("current_password");
+            let togglePassword1 = document.getElementById("togglePassword1");
+            let togglePasswordIcon1 = document.getElementById("togglePasswordIcon1");
 
-            var password2 = document.getElementById("password");
-            var togglePassword2 = document.getElementById("togglePassword2");
-            var togglePasswordIcon2 = document.getElementById("togglePasswordIcon2");
+            let password2 = document.getElementById("password");
+            let togglePassword2 = document.getElementById("togglePassword2");
+            let togglePasswordIcon2 = document.getElementById("togglePasswordIcon2");
 
-            var password3 = document.getElementById("password_confirmation");
-            var togglePassword3 = document.getElementById("togglePassword3");
-            var togglePasswordIcon3 = document.getElementById("togglePasswordIcon3");
+            let password3 = document.getElementById("password_confirmation");
+            let togglePassword3 = document.getElementById("togglePassword3");
+            let togglePasswordIcon3 = document.getElementById("togglePasswordIcon3");
 
             togglePassword1.addEventListener('click', function() {
                 togglePassword(password1, togglePasswordIcon1);

@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-6.5.1/css/all.min.css') }}">
+    <!-- dropify CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/dropify/css/dropify.min.css') }}">
     <title>@yield('title') | Food Park Dashboard</title>
 </head>
 
@@ -70,6 +72,7 @@
     <script src="{{ asset('admin/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('plugins/dropify/js/dropify.min.js') }}"></script>
     <script>
         // Munculkan error dengan menggunakan toastr
         toastr.options.closeButton = true;
@@ -84,28 +87,16 @@
             $(".knob").knob();
         });
 
-        // Validasi bawaan template
+        // dropify
 
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
+        $('.dropify-id').dropify({
+            messages: {
+                default: 'Tarik gambar dan taruh disini atau pilih disini',
+                replace: 'Tarik gambar dan taruh disini atau pilih disini untuk menggantikan gambar saat ini',
+                remove: 'Hapus gambar',
+                error: 'Ooops, ada sesuatu yang salah'
+            }
+        });
     </script>
     @stack('scripts')
     <script src="{{ asset('admin/assets/js/index.js') }}"></script>
