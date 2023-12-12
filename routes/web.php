@@ -28,6 +28,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::prefix('profile')->as('profile.')->controller(ProfileController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::put('/update', 'updateProfile')->name('updateProfile');
+            Route::put('/updatePassword', 'updatePassword')->name('updatePassword');
         });
     });
 });

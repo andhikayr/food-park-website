@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Hash;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +30,25 @@ class ProfileController extends Controller
         ]);
 
         Alert::success('Sukses', 'Data profil telah berhasil diubah');
+        return back();
+    }
+
+    public function updatePassword(Request $request) : RedirectResponse {
+        $request->validate([
+            'current_password' => 'required|current_password',
+            'password' => 'required|min:8|confirmed'
+        ],[
+            'current_password.current_password' => 'Password saat ini yang anda input salah',
+            'password.confirmed' => 'Password baru dengan konfirmasi password tidak cocok'
+        ]);
+
+        $admin = Auth::user();
+
+        $admin->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        Alert::success('Sukses', 'Password anda telah berhasil diubah');
         return back();
     }
 }

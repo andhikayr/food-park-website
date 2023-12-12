@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/header-colors.css') }}" />
     <!-- toastr CSS -->
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-6.5.1/css/all.min.css') }}">
     <title>@yield('title') | Food Park Dashboard</title>
 </head>
 
@@ -70,6 +72,8 @@
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script>
         // Munculkan error dengan menggunakan toastr
+        toastr.options.closeButton = true;
+        toastr.options.progressBar = true;
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 toastr.error("{{ $error }}")
