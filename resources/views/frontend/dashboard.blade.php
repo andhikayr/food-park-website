@@ -14,7 +14,7 @@
                         <div class="fp__dashboard_menu">
                             <div class="dasboard_header">
                                 <div class="dasboard_header_img">
-                                    <img src="images/comment_img_2.png" alt="user" class="img-fluid w-100">
+                                    <img src="{{ asset('frontend/images/comment_img_2.png') }}" alt="user" class="img-fluid w-100">
                                     <label for="upload"><i class="far fa-camera"></i></label>
                                     <input type="file" id="upload" hidden>
                                 </div>
@@ -833,7 +833,7 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="images/menu2_img_1.jpg" alt="menu"
+                                                            <img src="{{ asset('frontend/images/menu2_img_1.jpg') }}" alt="menu"
                                                                 class="img-fluid w-100">
                                                             <a class="category" href="#">Biryani</a>
                                                         </div>
@@ -863,7 +863,7 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="images/menu2_img_2.jpg" alt="menu"
+                                                            <img src="{{ asset('frontend/images/menu2_img_2.jpg') }}" alt="menu"
                                                                 class="img-fluid w-100">
                                                             <a class="category" href="#">chicken</a>
                                                         </div>
@@ -892,7 +892,7 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="images/menu2_img_3.jpg" alt="menu"
+                                                            <img src="{{ asset('frontend/images/menu2_img_3.jpg') }}" alt="menu"
                                                                 class="img-fluid w-100">
                                                             <a class="category" href="#">grill</a>
                                                         </div>
@@ -922,7 +922,7 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="images/menu2_img_4.jpg" alt="menu"
+                                                            <img src="{{ asset('frontend/images/menu2_img_4.jpg') }}" alt="menu"
                                                                 class="img-fluid w-100">
                                                             <a class="category" href="#">chicken</a>
                                                         </div>
@@ -951,7 +951,7 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="images/menu2_img_5.jpg" alt="menu"
+                                                            <img src="{{ asset('frontend/images/menu2_img_5.jpg') }}" alt="menu"
                                                                 class="img-fluid w-100">
                                                             <a class="category" href="#">chicken</a>
                                                         </div>
@@ -980,7 +980,7 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="images/menu2_img_6.jpg" alt="menu"
+                                                            <img src="{{ asset('frontend/images/menu2_img_6.jpg') }}" alt="menu"
                                                                 class="img-fluid w-100">
                                                             <a class="category" href="#">Biryani</a>
                                                         </div>
@@ -1045,7 +1045,7 @@
                                         <div class="fp__review_area">
                                             <div class="fp__comment pt-0 mt_20">
                                                 <div class="fp__single_comment m-0 border-0">
-                                                    <img src="images/menu1.png" alt="review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu1.png') }}" alt="review" class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">mamun ahmed shuvo</a> <span>29 oct 2022
                                                             </span>
@@ -1065,7 +1065,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="fp__single_comment">
-                                                    <img src="images/menu2.png" alt=" review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu2.png') }}" alt=" review" class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">asaduzzaman khan</a> <span>29 oct 2022
                                                             </span>
@@ -1085,7 +1085,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="fp__single_comment">
-                                                    <img src="images/menu3.png" alt="review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu3.png') }}" alt="review" class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">ariful islam rupom</a> <span>29 oct 2022
                                                             </span>
@@ -1105,7 +1105,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="fp__single_comment">
-                                                    <img src="images/menu4.png" alt="review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu4.png') }}" alt="review" class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">ali ahmed jakir</a> <span>29 oct 2022 </span>
                                                         </h3>
@@ -1181,7 +1181,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
                                 class="fal fa-times"></i></button>
                         <div class="fp__cart_popup_img">
-                            <img src="images/menu1.png" alt="menu" class="img-fluid w-100">
+                            <img src="{{ asset('frontend/images/menu1.png') }}" alt="menu" class="img-fluid w-100">
                         </div>
                         <div class="fp__cart_popup_text">
                             <a href="#" class="title">Maxican Pizza Test Better</a>

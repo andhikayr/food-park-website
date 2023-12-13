@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Frontend\DashboardController as FrontendDashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,15 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [FrontendController::class, 'index'])->name('index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
 
 Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('login', [DashboardController::class, 'login']);
     Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::prefix('profile')->as('profile.')->controller(ProfileController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::put('/update', 'updateProfile')->name('updateProfile');
@@ -33,6 +31,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
     });
 });
 
-Route::get('admin/dashboard', [DashboardController::class, 'index'])->middleware(['auth','role:superadmin,admin'])->name('admin.dashboard');
+
+
+Route::get('/', [FrontendController::class, 'index'])->name('index');
+
+Route::get('/dashboard', [FrontendDashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
 require __DIR__.'/auth.php';

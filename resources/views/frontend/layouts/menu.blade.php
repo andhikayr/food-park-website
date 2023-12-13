@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ asset('frontend/images/logo.png') }}" alt="FoodPark" class="img-fluid">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">about</a>
@@ -63,9 +63,9 @@
                 </li>
                 <li>
                     @auth
-                        <a href="dashboard.html" title="Dashboard"><i class="fas fa-user"></i></a>
+                        <a href="{{ route('dashboard') }}" title="Dashboard"><i class="fas fa-user"></i></a>
                     @else
-                        <a href="{{ route('login') }}" title="Login"><i class="fas fa-balance-scale-right"></i></a>
+                        <a href="{{ route('login') }}" title="Login"><i class="fa-solid fa-right-to-bracket"></i></i></a>
                     @endif
                 </li>
                 <li>
