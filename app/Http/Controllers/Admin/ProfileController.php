@@ -25,8 +25,15 @@ class ProfileController extends Controller
 
         $admin = Auth::user();
 
-        $imageName = 'user_' . date('YmdHis') . '.' . $request->file('image')->extension();
-        $request->file('image')->move(public_path() . '/admin/uploads/profile_image', $imageName);
+        if ($admin->image) {
+            unlink(public_path('/admin/uploads/profile_image/' . $admin->image));
+            $imageName = 'user_' . date('YmdHis') . '.' . $request->file('image')->extension();
+            $request->file('image')->move(public_path() . '/admin/uploads/profile_image', $imageName);
+        } else {
+            $imageName = 'user_' . date('YmdHis') . '.' . $request->file('image')->extension();
+            $request->file('image')->move(public_path() . '/admin/uploads/profile_image', $imageName);
+        }
+
         $admin['image'] = $imageName;
 
         $admin->update([
