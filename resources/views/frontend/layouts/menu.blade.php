@@ -63,7 +63,7 @@
                 </li>
                 <li>
                     @auth
-                        <a href="{{ route('dashboard') }}" title="Dashboard"><i class="fas fa-user"></i></a>
+                        <a href="{{ route('user.dashboard') }}" title="Dashboard"><i class="fas fa-user"></i></a>
                     @else
                         <a href="{{ route('login') }}" title="Login"><i class="fa-solid fa-right-to-bracket"></i></i></a>
                     @endif

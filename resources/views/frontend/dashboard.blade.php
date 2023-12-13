@@ -14,23 +14,23 @@
                         <div class="fp__dashboard_menu">
                             <div class="dasboard_header">
                                 <div class="dasboard_header_img">
-                                    <img src="{{ asset('frontend/images/comment_img_2.png') }}" alt="user" class="img-fluid w-100">
+                                    <img src="{{ asset('frontend/uploads/no_image_profile.png') }}" alt="user" class="img-fluid w-100">
                                     <label for="upload"><i class="far fa-camera"></i></label>
                                     <input type="file" id="upload" hidden>
                                 </div>
-                                <h2>hasib ahmed</h2>
+                                <h2>{{ Auth::user()->name }}</h2>
                             </div>
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
                                 <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-home" type="button" role="tab"
                                     aria-controls="v-pills-home" aria-selected="true"><span><i
-                                            class="fas fa-user"></i></span> Parsonal Info</button>
+                                            class="fas fa-user"></i></span> Informasi Akun</button>
 
                                 <button class="nav-link" id="v-pills-address-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-address" type="button" role="tab"
                                     aria-controls="v-pills-address" aria-selected="true"><span><i
-                                            class="fas fa-user"></i></span>address</button>
+                                            class="fas fa-user"></i></span>Alamat</button>
 
                                 <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-profile" type="button" role="tab"
@@ -45,12 +45,12 @@
                                 <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-messages" type="button" role="tab"
                                     aria-controls="v-pills-messages" aria-selected="false"><span><i
-                                            class="fas fa-star"></i></span> Reviews</button>
+                                            class="fas fa-star"></i></span> Review</button>
 
                                 <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-settings" type="button" role="tab"
                                     aria-controls="v-pills-settings" aria-selected="false"><span><i
-                                            class="fas fa-user-lock"></i></span> Change Password </button>
+                                            class="fas fa-user-lock"></i></span> Ubah Password </button>
 
                                 <button class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span> <i class="fas fa-sign-out-alt"></i>
                                     </span> Logout</button>
@@ -93,49 +93,36 @@
                                         </div>
 
                                         <div class="fp_dash_personal_info">
-                                            <h4>Parsonal Information
+                                            <h4>Informasi Akun
                                                 <a class="dash_info_btn">
                                                     <span class="edit">edit</span>
-                                                    <span class="cancel">cancel</span>
+                                                    <span class="cancel">batal</span>
                                                 </a>
                                             </h4>
 
                                             <div class="personal_info_text">
-                                                <p><span>Name:</span> Hasib Ahmed</p>
-                                                <p><span>Email:</span> hasibahmed@gmail.com</p>
-                                                <p><span>Phone:</span> 023 434 54354</p>
-                                                <p><span>Address:</span> 7232 Broadway Suite 308, Jackson Heights,
-                                                    11372, NY, United States </p>
+                                                <p><span>Nama:</span> {{ Auth::user()->name }}</p>
+                                                <p><span>Email:</span> {{ Auth::user()->email }}</p>
                                             </div>
 
                                             <div class="fp_dash_personal_info_edit comment_input p-0">
-                                                <form>
+                                                <form method="POST" action="{{ route('user.dashboard.updateDataProfile') }}">
+                                                    @csrf
+                                                    @method('PUT')
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>name</label>
-                                                                <input type="text" placeholder="Name">
+                                                                <label>nama</label>
+                                                                <input type="text" placeholder="Nama" required value="{{ Auth::user()->name }}" name="name">
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-6 col-lg-6">
+                                                        <div class="col-12">
                                                             <div class="fp__comment_imput_single">
                                                                 <label>email</label>
-                                                                <input type="email" placeholder="Email">
+                                                                <input type="email" placeholder="Email" required value="{{ Auth::user()->email }}" name="email">
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-6 col-lg-6">
-                                                            <div class="fp__comment_imput_single">
-                                                                <label>phone</label>
-                                                                <input type="text" placeholder="Phone">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <div class="fp__comment_imput_single">
-                                                                <label>address</label>
-                                                                <textarea rows="4" placeholder="Address"></textarea>
-                                                            </div>
-                                                            <button type="submit" class="common_btn">submit</button>
-                                                        </div>
+                                                        <button type="submit" class="common_btn">simpan perubahan</button>
                                                     </div>
                                                 </form>
                                             </div>

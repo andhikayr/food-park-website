@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Admin Route
 
 Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('login', [DashboardController::class, 'login']);
@@ -31,10 +31,13 @@ Route::prefix('admin')->as('admin.')->group(function () {
     });
 });
 
-
-
+// Frontend Index Route
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 
-Route::get('/dashboard', [FrontendDashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+// Frontend User Dashboard Route
+Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(FrontendDashboardController::class)->group(function () {
+    Route::get('/', 'index')->name('dashboard');
+    Route::put('/updateDataProfile', 'updateDataProfile')->name('dashboard.updateDataProfile');
+});
 
 require __DIR__.'/auth.php';
