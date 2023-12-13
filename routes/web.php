@@ -38,6 +38,8 @@ Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(FrontendDashboardController::class)->group(function () {
     Route::get('/', 'index')->name('dashboard');
     Route::put('/updateDataProfile', 'updateDataProfile')->name('dashboard.updateDataProfile');
+    Route::put('/updatePassword', 'updatePassword')->name('dashboard.updatePassword');
+    Route::post('/updateAvatar', 'updateAvatar')->name('dashboard.updateAvatar');
 });
 
 require __DIR__.'/auth.php';

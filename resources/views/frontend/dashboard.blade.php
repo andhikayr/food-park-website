@@ -14,9 +14,15 @@
                         <div class="fp__dashboard_menu">
                             <div class="dasboard_header">
                                 <div class="dasboard_header_img">
-                                    <img src="{{ asset('frontend/uploads/no_image_profile.png') }}" alt="user" class="img-fluid w-100">
+                                    @if (Auth::user()->image)
+                                        <img src="{{ asset('frontend/uploads/profile_image/'. Auth::user()->image) }}" alt="user" class="img-fluid w-100">
+                                    @else
+                                        <img src="{{ asset('frontend/uploads/no_image_profile.png') }}" alt="user" class="img-fluid w-100">
+                                    @endif
                                     <label for="upload"><i class="far fa-camera"></i></label>
-                                    <input type="file" id="upload" hidden>
+                                    <form id="avatar_form">
+                                        <input type="file" id="upload" name="image" accept="image/png, image/jpg, image/jpeg" hidden>
+                                    </form>
                                 </div>
                                 <h2>{{ Auth::user()->name }}</h2>
                             </div>
@@ -30,7 +36,7 @@
                                 <button class="nav-link" id="v-pills-address-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-address" type="button" role="tab"
                                     aria-controls="v-pills-address" aria-selected="true"><span><i
-                                            class="fas fa-user"></i></span>Alamat</button>
+                                            class="fa-solid fa-location-dot"></i></span>Alamat</button>
 
                                 <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-profile" type="button" role="tab"
@@ -52,7 +58,9 @@
                                     aria-controls="v-pills-settings" aria-selected="false"><span><i
                                             class="fas fa-user-lock"></i></span> Ubah Password </button>
 
-                                <button class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span> <i class="fas fa-sign-out-alt"></i>
+                                <button class="nav-link"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>
+                                        <i class="fas fa-sign-out-alt"></i>
                                     </span> Logout</button>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -106,23 +114,27 @@
                                             </div>
 
                                             <div class="fp_dash_personal_info_edit comment_input p-0">
-                                                <form method="POST" action="{{ route('user.dashboard.updateDataProfile') }}">
+                                                <form method="POST"
+                                                    action="{{ route('user.dashboard.updateDataProfile') }}">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="fp__comment_imput_single">
                                                                 <label>nama</label>
-                                                                <input type="text" placeholder="Nama" required value="{{ Auth::user()->name }}" name="name">
+                                                                <input type="text" placeholder="Nama" required
+                                                                    value="{{ Auth::user()->name }}" name="name">
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="fp__comment_imput_single">
                                                                 <label>email</label>
-                                                                <input type="email" placeholder="Email" required value="{{ Auth::user()->email }}" name="email">
+                                                                <input type="email" placeholder="Email" required
+                                                                    value="{{ Auth::user()->email }}" name="email">
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="common_btn">simpan perubahan</button>
+                                                        <button type="submit" class="common_btn">simpan
+                                                            perubahan</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -820,8 +832,8 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="{{ asset('frontend/images/menu2_img_1.jpg') }}" alt="menu"
-                                                                class="img-fluid w-100">
+                                                            <img src="{{ asset('frontend/images/menu2_img_1.jpg') }}"
+                                                                alt="menu" class="img-fluid w-100">
                                                             <a class="category" href="#">Biryani</a>
                                                         </div>
                                                         <div class="fp__menu_item_text">
@@ -850,8 +862,8 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="{{ asset('frontend/images/menu2_img_2.jpg') }}" alt="menu"
-                                                                class="img-fluid w-100">
+                                                            <img src="{{ asset('frontend/images/menu2_img_2.jpg') }}"
+                                                                alt="menu" class="img-fluid w-100">
                                                             <a class="category" href="#">chicken</a>
                                                         </div>
                                                         <div class="fp__menu_item_text">
@@ -879,8 +891,8 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="{{ asset('frontend/images/menu2_img_3.jpg') }}" alt="menu"
-                                                                class="img-fluid w-100">
+                                                            <img src="{{ asset('frontend/images/menu2_img_3.jpg') }}"
+                                                                alt="menu" class="img-fluid w-100">
                                                             <a class="category" href="#">grill</a>
                                                         </div>
                                                         <div class="fp__menu_item_text">
@@ -909,8 +921,8 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="{{ asset('frontend/images/menu2_img_4.jpg') }}" alt="menu"
-                                                                class="img-fluid w-100">
+                                                            <img src="{{ asset('frontend/images/menu2_img_4.jpg') }}"
+                                                                alt="menu" class="img-fluid w-100">
                                                             <a class="category" href="#">chicken</a>
                                                         </div>
                                                         <div class="fp__menu_item_text">
@@ -938,8 +950,8 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="{{ asset('frontend/images/menu2_img_5.jpg') }}" alt="menu"
-                                                                class="img-fluid w-100">
+                                                            <img src="{{ asset('frontend/images/menu2_img_5.jpg') }}"
+                                                                alt="menu" class="img-fluid w-100">
                                                             <a class="category" href="#">chicken</a>
                                                         </div>
                                                         <div class="fp__menu_item_text">
@@ -967,8 +979,8 @@
                                                 <div class="col-xl-4 col-sm-6 col-lg-6">
                                                     <div class="fp__menu_item">
                                                         <div class="fp__menu_item_img">
-                                                            <img src="{{ asset('frontend/images/menu2_img_6.jpg') }}" alt="menu"
-                                                                class="img-fluid w-100">
+                                                            <img src="{{ asset('frontend/images/menu2_img_6.jpg') }}"
+                                                                alt="menu" class="img-fluid w-100">
                                                             <a class="category" href="#">Biryani</a>
                                                         </div>
                                                         <div class="fp__menu_item_text">
@@ -1032,7 +1044,8 @@
                                         <div class="fp__review_area">
                                             <div class="fp__comment pt-0 mt_20">
                                                 <div class="fp__single_comment m-0 border-0">
-                                                    <img src="{{ asset('frontend/images/menu1.png') }}" alt="review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu1.png') }}" alt="review"
+                                                        class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">mamun ahmed shuvo</a> <span>29 oct 2022
                                                             </span>
@@ -1052,7 +1065,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="fp__single_comment">
-                                                    <img src="{{ asset('frontend/images/menu2.png') }}" alt=" review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu2.png') }}" alt=" review"
+                                                        class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">asaduzzaman khan</a> <span>29 oct 2022
                                                             </span>
@@ -1072,7 +1086,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="fp__single_comment">
-                                                    <img src="{{ asset('frontend/images/menu3.png') }}" alt="review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu3.png') }}" alt="review"
+                                                        class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">ariful islam rupom</a> <span>29 oct 2022
                                                             </span>
@@ -1092,7 +1107,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="fp__single_comment">
-                                                    <img src="{{ asset('frontend/images/menu4.png') }}" alt="review" class="img-fluid">
+                                                    <img src="{{ asset('frontend/images/menu4.png') }}" alt="review"
+                                                        class="img-fluid">
                                                     <div class="fp__single_comm_text">
                                                         <h3><a href="#">ali ahmed jakir</a> <span>29 oct 2022 </span>
                                                         </h3>
@@ -1120,29 +1136,35 @@
                                     aria-labelledby="v-pills-settings-tab">
                                     <div class="fp_dashboard_body fp__change_password">
                                         <div class="fp__review_input">
-                                            <h3>change password</h3>
+                                            <h3>ubah password</h3>
                                             <div class="comment_input pt-0">
-                                                <form>
+                                                <form method="POST"
+                                                    action="{{ route('user.dashboard.updatePassword') }}">
+                                                    @csrf
+                                                    @method('PUT')
                                                     <div class="row">
-                                                        <div class="col-xl-6">
+                                                        <div class="col-12">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>Current Password</label>
-                                                                <input type="password" placeholder="Current Password">
+                                                                <label>Password Saat Ini</label>
+                                                                <input type="password" placeholder="Current Password"
+                                                                    name="current_password">
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-6">
+                                                        <div class="col-12">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>New Password</label>
-                                                                <input type="password" placeholder="New Password">
+                                                                <label>Password Baru</label>
+                                                                <input type="password" placeholder="Password Baru"
+                                                                    name="password">
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-12">
+                                                        <div class="col-12">
                                                             <div class="fp__comment_imput_single">
-                                                                <label>confirm Password</label>
-                                                                <input type="password" placeholder="Confirm Password">
+                                                                <label>Konfirmasi Password</label>
+                                                                <input type="password" placeholder="Konfirmasi Password"
+                                                                    name="password_confirmation">
                                                             </div>
-                                                            <button type="submit"
-                                                                class="common_btn mt_20">submit</button>
+                                                            <button type="submit" class="common_btn mt_20">ubah
+                                                                password</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -1245,3 +1267,29 @@
     </div>
     <!-- CART POPUT END -->
 @endsection
+
+@push('scripts')<script>
+    $(document).ready(function(){
+        $('#upload').on('change', function(){
+            let form = $('#avatar_form')[0];
+            let formData = new FormData(form);
+
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('user.dashboard.updateAvatar') }}",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response){
+                    if (response.status === 'success') {
+                        window.location.reload();
+                    }
+                },
+                error: function(error){
+                    console.error(error);
+                }
+            })
+        })
+    })
+</script>
+@endpush
