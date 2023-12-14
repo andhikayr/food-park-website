@@ -4,26 +4,26 @@
             <img src="{{ asset('admin/assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
         </div>
         <div>
-            <h4 class="logo-text">Rukada</h4>
+            <h4 class="logo-text">Food Park</h4>
         </div>
-        <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+        <div class="toggle-icon ms-auto"><i class='fas fa-bars'></i>
         </div>
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="widgets.html">
+            <a href="{{ route('admin.dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
-        <li class="menu-label">UI Elements</li>
+        <li class="menu-label">Pengaturan Menu Homepage</li>
         <li>
-            <a href="widgets.html">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+            <a href="{{ route('admin.slider.index') }}">
+                <div class="parent-icon"><i class='bx bx-card'></i>
                 </div>
-                <div class="menu-title">Widgets</div>
+                <div class="menu-title">Slider Produk</div>
             </a>
         </li>
         <li>

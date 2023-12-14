@@ -10,6 +10,7 @@
     <!--plugins-->
     <link href="{{ asset('admin/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}">
     <link href="{{ asset('admin/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
     <!-- loader-->
     <link href="{{ asset('admin/assets/css/pace.min.css') }}" rel="stylesheet" />
@@ -71,6 +72,8 @@
     <script src="{{ asset('admin/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('plugins/dropify/js/dropify.min.js') }}"></script>
     <script>
