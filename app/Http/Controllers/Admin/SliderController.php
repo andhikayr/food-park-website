@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Slider;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class SliderController extends Controller
      */
     public function index() : View
     {
-        return view('admin.slider.index');
+        $sliders = Slider::latest()->get();
+        return view('admin.slider.index', compact('sliders'));
     }
 
     /**
