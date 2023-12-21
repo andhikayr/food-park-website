@@ -122,6 +122,7 @@
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
+                    cancelButtonText: "Batal",
                     confirmButtonText: "Ya, hapus data ini"
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -130,12 +131,7 @@
                             url: url,
                             success: function(response) {
                                 if (response.status === 'success') {
-                                    Swal.fire({
-                                        title: "Terhapus!",
-                                        text: "Data ini telah berhasil dihapus",
-                                        icon: "success"
-                                    });
-                                    $('#example').DataTable().draw();
+                                    window.location.reload()
                                 } else if (response.status === 'error') {
                                     toastr.error(response.message)
                                 }

@@ -9,7 +9,7 @@
         <h6 class="mb-0 text-uppercase">Data Produk Slider</h6>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="#" class="btn btn-primary">Tambah Data</a>
+                <a href="{{ route('admin.slider.create') }}" class="btn btn-primary">Tambah Data</a>
             </div>
         </div>
     </div>
@@ -36,10 +36,16 @@
                                 @if ($item->status === 1)
                                     <td><span class="badge rounded-pill bg-success">Aktif</span></td>
                                 @else
-                                    <td><span class="badge rounded-pill bg-success">Tidak Aktif</span></td>
+                                    <td><span class="badge rounded-pill bg-danger">Tidak Aktif</span></td>
                                 @endif
-
-                                <td>Opsi</td>
+                                <td>
+                                    <a class="pe-1 btn btn-primary" href="{{ route('admin.slider.edit', $item->id) }}"
+                                        title="Edit Data"><i class="fas fa-edit"></i></a>
+                                    |
+                                    <a class="pe-2 btn btn-danger delete-item"
+                                        href="{{ route('admin.slider.destroy', $item->id) }}" title="Hapus Data"><i
+                                            class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -61,7 +67,11 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                language: {
+                    url: '{{ asset("admin/assets/plugins/datatable/id.json") }}',
+                },
+            });
         });
     </script>
 @endpush
