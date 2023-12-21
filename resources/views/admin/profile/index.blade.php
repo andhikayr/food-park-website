@@ -18,7 +18,7 @@
                             @csrf
                             @method('PUT')
                             <div class="col-12">
-                                <label for="image"></label>
+                                <label for="image" class="mb-3">Gambar Profil</label>
                                 <input class="dropify-id" class="form-control" type="file" name="image" id="image"
                                     accept="image/jpg, image/png, image/jpeg" data-max-file-size="1M"
                                     data-allowed-file-extensions="jpg jpeg png"
