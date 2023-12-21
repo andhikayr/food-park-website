@@ -21,7 +21,8 @@
                                 <label for="image"></label>
                                 <input class="dropify-id" class="form-control" type="file" name="image" id="image"
                                     accept="image/jpg, image/png, image/jpeg" data-max-file-size="1M"
-                                    data-allowed-file-extensions="jpg jpeg png" data-default-file="{{ asset('admin/uploads/profile_image/'. Auth::user()->image) }}">
+                                    data-allowed-file-extensions="jpg jpeg png"
+                                    data-default-file="{{ asset('admin/uploads/profile_image/' . Auth::user()->image) }}">
                                 <p class="text-secondary mb-0 mt-3">* Ukuran gambar tidak boleh lebih dari 1 MB. Format
                                     gambar yang diizinkan : JPG, JPEG, PNG</p>
 
@@ -56,7 +57,7 @@
                                 <label for="current_password" class="form-label">Password saat ini</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="current_password" required
-                                        name="current_password">
+                                        name="current_password" minlength="8">
                                     <span class="input-group-text" id="togglePassword1" onclick="togglePassword1"><i
                                             id="togglePasswordIcon1" class="fas fa-eye"></i></span>
                                 </div>
@@ -66,7 +67,7 @@
                                 <label for="password" class="form-label">Password baru</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" required name="password"
-                                        oninput="password">
+                                        oninput="password" minlength="8">
                                     <span class="input-group-text" id="togglePassword2" onclick="togglePassword2"><i
                                             id="togglePasswordIcon2" class="fas fa-eye"></i></span>
                                 </div>
@@ -75,7 +76,7 @@
                                 <label for="password_confirmation" class="form-label">Konfirmasi password</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password_confirmation" required
-                                        name="password_confirmation">
+                                        name="password_confirmation" minlength="8">
                                     <span class="input-group-text" id="togglePassword3" onclick="togglePassword3"><i
                                             id="togglePasswordIcon3" class="fas fa-eye"></i></span>
                                 </div>
