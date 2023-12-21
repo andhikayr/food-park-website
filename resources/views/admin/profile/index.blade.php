@@ -31,13 +31,11 @@
                                 <label for="name" class="form-label">Nama</label>
                                 <input type="text" class="form-control" id="name" value="{{ Auth::user()->name }}"
                                     name="name" required>
-                                <div class="invalid-feedback">Kolom ini harus diisi!</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}"
                                     name="email" required>
-                                <div class="invalid-feedback">Kolom email harus diisi dengan valid!</div>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Simpan Perubahan</button>
