@@ -76,6 +76,7 @@
     <script src="{{ asset('admin/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('plugins/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('plugins/sweetalert2/sweetalert2@11.js') }}"></script>
     <script>
         // Munculkan error dengan menggunakan toastr
         toastr.options.closeButton = true;
@@ -91,7 +92,6 @@
         });
 
         // dropify
-
         $('.dropify-id').dropify({
             messages: {
                 default: 'Tarik gambar dan taruh disini atau pilih disini',
@@ -99,6 +99,30 @@
                 remove: 'Hapus gambar',
                 error: 'Ooops, ada sesuatu yang salah'
             }
+        });
+
+        // sweetalert2 konfirmasi hapus data
+        $(document).ready(function() {
+            $('body').on('click', '.delete-item', function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: "Hapus data ini?",
+                    text: "Data yang terhapus tidak dapat dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus data ini"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Terhapus!",
+                            text: "Data ini telah berhasil dihapus",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
         });
     </script>
     @stack('scripts')
