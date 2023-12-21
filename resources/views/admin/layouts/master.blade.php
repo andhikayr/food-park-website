@@ -4,6 +4,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('admin/assets/images/favicon-32x32.png') }}" type="image/png" />
@@ -101,10 +102,19 @@
             }
         });
 
+        // Laravel CSRF token ajax
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         // sweetalert2 konfirmasi hapus data
         $(document).ready(function() {
             $('body').on('click', '.delete-item', function(e) {
                 e.preventDefault();
+                let url = $(this).attr('href');
+
                 Swal.fire({
                     title: "Hapus data ini?",
                     text: "Data yang terhapus tidak dapat dikembalikan!",
@@ -115,10 +125,24 @@
                     confirmButtonText: "Ya, hapus data ini"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Terhapus!",
-                            text: "Data ini telah berhasil dihapus",
-                            icon: "success"
+                        $.ajax({
+                            method: "DELETE",
+                            url: url,
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    Swal.fire({
+                                        title: "Terhapus!",
+                                        text: "Data ini telah berhasil dihapus",
+                                        icon: "success"
+                                    });
+                                    $('#example').DataTable().draw();
+                                } else if (response.status === 'error') {
+                                    toastr.error(response.message)
+                                }
+                            },
+                            error: function(error) {
+                                console.error(error);
+                            }
                         });
                     }
                 });
