@@ -102,6 +102,16 @@
             }
         });
 
+        // Event dropify untuk menampilkan pesan error dengan toastr
+        var drEvent = $('.dropify-id').dropify();
+
+        drEvent.on('dropify.error.fileSize', function(event, element) {
+            toastr.error("Ukuran file yang anda pilih terlalu besar");
+        });
+        drEvent.on('dropify.error.imageFormat', function(event, element) {
+            toastr.error("Format file yang anda pilih tidak diizinkan.");
+        });
+
         // Laravel CSRF token ajax
         $.ajaxSetup({
             headers: {
