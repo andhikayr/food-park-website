@@ -15,7 +15,7 @@
                     <form method="POST" class="row g-3" action="{{ route('admin.slider.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
-                            <label for="image" class="mb-3">Gambar Slider *</label>
+                            <label for="image" class="mb-3">Gambar Produk Slider *</label>
                             <input class="dropify-id" class="form-control" type="file" name="image" id="image"
                                 accept="image/jpg, image/png, image/jpeg" data-max-file-size="1M"
                                 data-allowed-file-extensions="jpg jpeg png" required>

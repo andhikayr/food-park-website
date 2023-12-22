@@ -16,7 +16,7 @@
                         @csrf
                         @method('PUT')
                         <div class="col-12">
-                            <label for="image" class="mb-3">Gambar Slider *</label>
+                            <label for="image" class="mb-3">Gambar Produk Slider *</label>
                             <input class="dropify-id" class="form-control" type="file" name="image" id="image"
                                 accept="image/jpg, image/png, image/jpeg" data-max-file-size="1M"
                                 data-allowed-file-extensions="jpg jpeg png" data-default-file="{{ asset('admin/uploads/slider_image/' . $slider->image) }}">
