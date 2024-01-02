@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('why_choose_us', function (Blueprint $table) {
             $table->id();
-            $table->text('key');
-            $table->text('value');
             $table->timestamps();
         });
     }
