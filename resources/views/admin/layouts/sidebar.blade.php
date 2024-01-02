@@ -26,6 +26,13 @@
                 <div class="menu-title">Slider Produk</div>
             </a>
         </li>
+	<li>
+            <a href="{{ route('admin.why-choose-us.index') }}">
+                <div class="parent-icon"><i class='bx bx-card'></i>
+                </div>
+                <div class="menu-title">"Mengapa Memilih Kita"</div>
+            </a>
+        </li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i>

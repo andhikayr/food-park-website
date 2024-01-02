@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Controllers\Frontend\DashboardController as FrontendDashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +32,11 @@ Route::prefix('admin')->as('admin.')->group(function () {
             Route::put('/updatePassword', 'updatePassword')->name('updatePassword');
         });
 
+	// Pengaturan slider produk
         Route::resource('slider', SliderController::class);
+
+	// Pengaturan teks "Mengapa Memilih Kita"
+	Route::resource('why-choose-us', WhyChooseUsController::class);
     });
 });
 
