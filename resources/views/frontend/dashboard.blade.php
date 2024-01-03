@@ -123,14 +123,14 @@
                                                             <div class="fp__comment_imput_single">
                                                                 <label>nama</label>
                                                                 <input type="text" placeholder="Nama" required
-                                                                    value="{{ Auth::user()->name }}" name="name">
+                                                                    value="{{ Auth::user()->name }}" name="name" maxlength="255">
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="fp__comment_imput_single">
                                                                 <label>email</label>
                                                                 <input type="email" placeholder="Email" required
-                                                                    value="{{ Auth::user()->email }}" name="email">
+                                                                    value="{{ Auth::user()->email }}" name="email" maxlength="255">
                                                             </div>
                                                         </div>
                                                         <button type="submit" class="common_btn">simpan

@@ -35,22 +35,22 @@
                         <div class="col-md-6">
                             <label for="title" class="form-label">Judul *</label>
                             <input type="text" class="form-control" id="title"
-                                name="title" required value="{{ $slider->title }}">
+                                name="title" required maxlength="255" value="{{ $slider->title }}">
                         </div>
                         <div class="col-md-6">
                             <label for="sub_title" class="form-label">Sub Judul *</label>
                             <input type="text" class="form-control" id="sub_title"
-                                name="sub_title" required value="{{ $slider->sub_title }}">
+                                name="sub_title" required maxlength="255" value="{{ $slider->sub_title }}">
                         </div>
                         <div class="col-md-6">
                             <label for="button_link" class="form-label">Link Produk</label>
                             <input type="text" class="form-control" id="button_link"
-                                name="button_link" value="{{ $slider->button_link }}">
+                                name="button_link" maxlength="255" value="{{ $slider->button_link }}">
                         </div>
                         <div class="col-12">
                             <label for="short_description" class="form-label">Deskripsi Singkat *</label>
                             <input type="text" class="form-control" id="short_description"
-                                name="short_description" required value="{{ $slider->short_description }}">
+                                name="short_description" required maxlength="255" value="{{ $slider->short_description }}">
                         </div>
                         <div class="col-12">
                             <label for="status" class="form-label">Status</label>

@@ -14,7 +14,7 @@
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Bagian Judul "Mengapa Memilih Kita"
+                            Ubah atau tambah bagian judul "Mengapa Memilih Kita"
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -22,16 +22,16 @@
                         <div class="accordion-body">
                             <form action="#" method="post">
                                 <div class="form-group py-2">
-                                    <label for="">Top Judul</label>
-                                    <input type="text" name="" id="" class="form-control">
+                                    <label for="why_choose_top_title">Top Judul</label>
+                                    <input type="text" name="why_choose_top_title" id="why_choose_top_title" class="form-control" value="{{ $titles['why_choose_top_title'] }}" maxlength="255" required>
                                 </div>
                                 <div class="form-group py-2">
-                                    <label for="title">Judul</label>
-                                    <input type="text" name="title" id="title" class="form-control">
+                                    <label for="why_choose_main_title">Judul</label>
+                                    <input type="text" name="why_choose_main_title" id="why_choose_main_title" class="form-control" value="{{ $titles['why_choose_main_title'] }}" maxlength="255" required>
                                 </div>
                                 <div class="form-group py-2">
-                                    <label for="sub_title">Sub Judul</label>
-                                    <input type="text" name="sub_title" id="sub_title" class="form-control">
+                                    <label for="why_choose_sub_title">Sub Judul</label>
+                                    <input type="text" name="why_choose_sub_title" id="why_choose_sub_title" class="form-control" value="{{ $titles['why_choose_sub_title'] }}" maxlength="255" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                             </form>

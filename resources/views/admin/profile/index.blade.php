@@ -30,12 +30,12 @@
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Nama</label>
                                 <input type="text" class="form-control" id="name" value="{{ Auth::user()->name }}"
-                                    name="name" required>
+                                    name="name" required maxlength="255">
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}"
-                                    name="email" required>
+                                    name="email" required maxlength="255">
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Simpan Perubahan</button>
@@ -55,7 +55,7 @@
                                 <label for="current_password" class="form-label">Password saat ini</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="current_password" required
-                                        name="current_password" minlength="8">
+                                        name="current_password" minlength="8" maxlength="50">
                                     <span class="input-group-text" id="togglePassword1" onclick="togglePassword1"><i
                                             id="togglePasswordIcon1" class="fas fa-eye"></i></span>
                                 </div>
@@ -65,7 +65,7 @@
                                 <label for="password" class="form-label">Password baru</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" required name="password"
-                                        oninput="password" minlength="8">
+                                        oninput="password" minlength="8" maxlength="50">
                                     <span class="input-group-text" id="togglePassword2" onclick="togglePassword2"><i
                                             id="togglePasswordIcon2" class="fas fa-eye"></i></span>
                                 </div>
@@ -74,7 +74,7 @@
                                 <label for="password_confirmation" class="form-label">Konfirmasi password</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password_confirmation" required
-                                        name="password_confirmation" minlength="8">
+                                        name="password_confirmation" minlength="8" maxlength="50">
                                     <span class="input-group-text" id="togglePassword3" onclick="togglePassword3"><i
                                             id="togglePasswordIcon3" class="fas fa-eye"></i></span>
                                 </div>
