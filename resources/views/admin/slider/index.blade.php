@@ -31,7 +31,7 @@
                         @foreach ($sliders as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->image }}</td>
+                                <td><img src="{{ asset('admin/uploads/slider_image/' . $item->image) }}" width="120px" height="120px"></td>
                                 <td>{{ $item->title }}</td>
                                 @if ($item->status === 1)
                                     <td><span class="badge rounded-pill bg-success">Aktif</span></td>
