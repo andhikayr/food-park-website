@@ -22,7 +22,7 @@
                                 <input class="dropify-id" class="form-control" type="file" name="image" id="image"
                                     accept="image/jpg, image/png, image/jpeg" data-max-file-size="1M"
                                     data-allowed-file-extensions="jpg jpeg png"
-                                    data-default-file="{{ asset('admin/uploads/profile_image/' . Auth::user()->image) }}">
+                                    data-default-file="{{ Auth::user()->image ? asset('admin/uploads/profile_image/' . Auth::user()->image) : asset('admin/uploads/no_image_profile.png') }}">
                                 <p class="text-secondary mb-0 mt-3">* Ukuran gambar tidak boleh lebih dari 1 MB. Format
                                     gambar yang diizinkan : JPG, JPEG, PNG</p>
 
