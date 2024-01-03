@@ -32,11 +32,12 @@ Route::prefix('admin')->as('admin.')->group(function () {
             Route::put('/updatePassword', 'updatePassword')->name('updatePassword');
         });
 
-	// Pengaturan slider produk
+        // Pengaturan slider produk
         Route::resource('slider', SliderController::class);
 
-	// Pengaturan teks "Mengapa Memilih Kita"
-	Route::resource('why-choose-us', WhyChooseUsController::class);
+        // Pengaturan teks "Mengapa Memilih Kita"
+        Route::put('why-choose-title-update', [WhyChooseUsController::class, 'updateTitle'])->name('why-choose-title.update');
+        Route::resource('why-choose-us', WhyChooseUsController::class);
     });
 });
 
@@ -51,4 +52,4 @@ Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(Frontend
     Route::post('/updateAvatar', 'updateAvatar')->name('dashboard.updateAvatar');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SectionTitle;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class WhyChooseUsController extends Controller
 {
@@ -13,7 +16,9 @@ class WhyChooseUsController extends Controller
      */
     public function index() : View
     {
-        return view('admin.why-choose-us.index');
+        $keys = ['why_choose_top_title', 'why_choose_main_title', 'why_choose_sub_title'];
+        $titles = SectionTitle::whereIn('key', $keys)->pluck('value', 'key');
+        return view('admin.why-choose-us.index', compact('titles'));
     }
 
     /**
@@ -54,6 +59,32 @@ class WhyChooseUsController extends Controller
     public function update(Request $request, string $id)
     {
         //
+    }
+
+    public function updateTitle(Request $request) : RedirectResponse {
+        $request->validate([
+            'why_choose_top_title' => 'max:255',
+            'why_choose_main_title' => 'max:255',
+            'why_choose_sub_title' => 'max:255'
+        ]);
+
+        SectionTitle::updateOrCreate(
+            ['key' => 'why_choose_top_title'],
+            ['value' => $request->why_choose_top_title]
+        );
+
+        SectionTitle::updateOrCreate(
+            ['key' => 'why_choose_main_title'],
+            ['value' => $request->why_choose_main_title]
+        );
+
+        SectionTitle::updateOrCreate(
+            ['key' => 'why_choose_sub_title'],
+            ['value' => $request->why_choose_sub_title]
+        );
+
+        Alert::success('Sukses', 'Judul "Mengapa Memilih Kita" sudah berhasil disimpan');
+        return back();
     }
 
     /**

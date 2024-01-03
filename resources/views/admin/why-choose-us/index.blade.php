@@ -20,18 +20,20 @@
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                         data-bs-parent="#accordionExample" style="">
                         <div class="accordion-body">
-                            <form action="#" method="post">
+                            <form action="{{ route('admin.why-choose-title.update') }}" method="post">
+                                @csrf
+                                @method('PUT')
                                 <div class="form-group py-2">
                                     <label for="why_choose_top_title">Top Judul</label>
-                                    <input type="text" name="why_choose_top_title" id="why_choose_top_title" class="form-control" value="{{ $titles['why_choose_top_title'] }}" maxlength="255" required>
+                                    <input type="text" name="why_choose_top_title" id="why_choose_top_title" class="form-control" value="{{ @$titles['why_choose_top_title'] }}" maxlength="255">
                                 </div>
                                 <div class="form-group py-2">
                                     <label for="why_choose_main_title">Judul</label>
-                                    <input type="text" name="why_choose_main_title" id="why_choose_main_title" class="form-control" value="{{ $titles['why_choose_main_title'] }}" maxlength="255" required>
+                                    <input type="text" name="why_choose_main_title" id="why_choose_main_title" class="form-control" value="{{ @$titles['why_choose_main_title'] }}" maxlength="255">
                                 </div>
                                 <div class="form-group py-2">
                                     <label for="why_choose_sub_title">Sub Judul</label>
-                                    <input type="text" name="why_choose_sub_title" id="why_choose_sub_title" class="form-control" value="{{ $titles['why_choose_sub_title'] }}" maxlength="255" required>
+                                    <input type="text" name="why_choose_sub_title" id="why_choose_sub_title" class="form-control" value="{{ @$titles['why_choose_sub_title'] }}" maxlength="255">
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                             </form>
