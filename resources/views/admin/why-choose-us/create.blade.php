@@ -22,7 +22,7 @@
                                 </div>
                                 <button type="button" id="GetIconPicker" data-iconpicker-input="input#GetIconPicker"
                                     data-iconpicker-preview="i#GetIconPicker" name="icon" class="btn btn-primary mt-3">Pilih Ikon</button>
-                                <input type="hidden" id="GetIconPicker" name="icon" required="" placeholder="Hidden etc. input for icon classname" autocomplete="off" spellcheck="false" value="fab fa-apple-pay">
+                                <input type="hidden" id="GetIconPicker" name="icon" required placeholder="Hidden etc. input for icon classname" autocomplete="off" spellcheck="false" value="fab fa-apple-pay">
                             </div>
                             <div class="col-12">
                                 <label for="title" class="form-label">Judul *</label>
