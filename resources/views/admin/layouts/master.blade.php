@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('admin/assets/images/favicon-32x32.png') }}" type="image/png" />
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <!--plugins-->
     <link href="{{ asset('admin/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
@@ -26,8 +27,9 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/css/header-colors.css') }}" />
     <!-- toastr CSS -->
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
-    <!-- font awesome CSS -->
+    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-6.5.1/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/IconPicker/iconpicker-1.5.0.css') }}">
     <!-- dropify CSS -->
     <link rel="stylesheet" href="{{ asset('plugins/dropify/css/dropify.min.css') }}">
     <title>@yield('title') | Food Park Dashboard</title>
@@ -66,9 +68,10 @@
     @include('admin.layouts.switcher')
     <!--end switcher-->
     <!-- Bootstrap JS -->
-    <script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
+
     <!--plugins-->
     <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
@@ -78,6 +81,7 @@
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('plugins/dropify/js/dropify.min.js') }}"></script>
     <script src="{{ asset('plugins/sweetalert2/sweetalert2@11.js') }}"></script>
+    <script src="{{ asset('plugins/IconPicker/iconpicker-1.5.0.js') }}"></script>
     <script>
         // Munculkan error dengan menggunakan toastr
         toastr.options.closeButton = true;
