@@ -16,7 +16,7 @@
         <div class="row">
             @foreach ($WhyChooseUs as $item)
                 <div class="col-xl-4 col-md-6 col-lg-4">
-                    <div class="fp__choose_single">
+                    <div class="fp__choose_single" style="height: 80%">
                         <div class="icon icon_1">
                             <i class="{{ $item->icon }}"></i>
                         </div>
