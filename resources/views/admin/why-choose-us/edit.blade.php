@@ -28,11 +28,11 @@
                             <div class="col-12">
                                 <label for="title" class="form-label">Judul *</label>
                                 <input type="text" class="form-control" id="title" name="title" required
-                                    maxlength="255" value="{{ $WhyChooseUs->title }}">
+                                    maxlength="30" value="{{ $WhyChooseUs->title }}">
                             </div>
                             <div class="col-12">
-                                <label for="short_description" class="form-label">Deskripsi Singkat</label>
-                                <input type="text" class="form-control" id="short_description" name="short_description" maxlength="255" value="{{ $WhyChooseUs->short_description }}">
+                                <label for="short_description" class="form-label">Deskripsi Singkat *</label>
+                                <input type="text" class="form-control" id="short_description" name="short_description" maxlength="100" value="{{ $WhyChooseUs->short_description }}">
                             </div>
                             <div class="col-12">
                                 <label for="status" class="form-label">Status</label>

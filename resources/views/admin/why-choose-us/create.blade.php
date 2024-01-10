@@ -14,7 +14,7 @@
                     <div class="p-4 border rounded">
                         <form method="POST" class="row g-3" action="{{ route('admin.why-choose-us.store') }}">
                             @csrf
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <label for="GetIconPicker" class="form-label">Ikon</label>
                                 <br>
                                 <div class="ms-3" data-toggle="tooltip" title="" data-original-title="Preview of selected Icon">
@@ -24,24 +24,24 @@
                                     data-iconpicker-preview="i#GetIconPicker" name="icon" class="btn btn-primary mt-3">Pilih Ikon</button>
                                 <input type="hidden" id="GetIconPicker" name="icon" required placeholder="Hidden etc. input for icon classname" autocomplete="off" spellcheck="false" value="fab fa-apple-pay">
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <label for="title" class="form-label">Judul *</label>
                                 <input type="text" class="form-control" id="title" name="title" required
-                                    maxlength="255">
+                                    maxlength="30">
                             </div>
-                            <div class="col-12">
-                                <label for="short_description" class="form-label">Deskripsi Singkat</label>
+                            <div class="col-md-6">
+                                <label for="short_description" class="form-label">Deskripsi Singkat *</label>
                                 <input type="text" class="form-control" id="short_description" name="short_description"
-                                    maxlength="255">
+                                    maxlength="100">
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <label for="status" class="form-label">Status</label>
                                 <select name="status" id="status" class="form-select">
                                     <option value="1">Ya</option>
                                     <option value="0">Tidak</option>
                                 </select>
                                 <p class="mt-3 text-secondary">* kolom status digunakan untuk mengatur apakah data ini
-                                    muncul di bagian "Mengapa Memilih Kita" atau tidak</p>
+                                    muncul di bagian homepage "Mengapa Memilih Kita" atau tidak</p>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Simpan</button>

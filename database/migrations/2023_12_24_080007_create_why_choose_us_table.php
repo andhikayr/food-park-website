@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('why_choose_us', function (Blueprint $table) {
             $table->id();
             $table->string('icon');
-            $table->string('title');
-            $table->string('short_description');
+            $table->string('title', 30);
+            $table->string('short_description', 100);
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

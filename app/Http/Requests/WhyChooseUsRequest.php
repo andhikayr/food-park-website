@@ -23,7 +23,8 @@ class WhyChooseUsRequest extends FormRequest
     {
         return [
             'icon' => 'required',
-            'title' => 'required|max:255'
+            'title' => 'required|max:30',
+            'short_description' => 'required|max:100'
         ];
     }
 }
