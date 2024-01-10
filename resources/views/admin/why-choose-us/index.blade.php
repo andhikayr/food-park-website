@@ -61,19 +61,38 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Gambar</th>
+                            <th>Ikon</th>
                             <th>Judul</th>
                             <th>Status</th>
                             <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach ($WhyChooseUs as $item)
+                            <tr>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td><i class="{{ $item->icon }} ms-2 mt-2" style="transform: scale(2)"></i></td>
+                                <td>{{ $item->title }}</td>
+                                @if ($item->status === 1)
+                                    <td><span class="badge rounded-pill bg-success">Aktif</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-danger">Tidak Aktif</span></td>
+                                @endif
+                                <td>
+                                    <a class="pe-1 btn btn-primary" href="{{ route('admin.why-choose-us.edit', $item->id) }}"
+                                        title="Edit Data"><i class="fas fa-edit"></i></a>
+                                    |
+                                    <a class="pe-2 btn btn-danger delete-item"
+                                        href="{{ route('admin.why-choose-us.destroy', $item->id) }}" title="Hapus Data"><i
+                                            class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Gambar</th>
+                            <th>Ikon</th>
                             <th>Judul</th>
                             <th>Status</th>
                             <th>Opsi</th>

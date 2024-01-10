@@ -20,7 +20,8 @@ class WhyChooseUsController extends Controller
     {
         $keys = ['why_choose_top_title', 'why_choose_main_title', 'why_choose_sub_title'];
         $titles = SectionTitle::whereIn('key', $keys)->pluck('value', 'key');
-        return view('admin.why-choose-us.index', compact('titles'));
+        $WhyChooseUs = WhyChooseUs::latest()->get();
+        return view('admin.why-choose-us.index', compact('titles', 'WhyChooseUs'));
     }
 
     /**
@@ -57,17 +58,26 @@ class WhyChooseUsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $WhyChooseUs = WhyChooseUs::findOrFail($id);
+        return view('admin.why-choose-us.edit', compact('WhyChooseUs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(WhyChooseUsRequest $request, string $id)
     {
-        //
+        $WhyChooseUs = WhyChooseUs::findOrFail($id);
+        $WhyChooseUs->update([
+            'icon' => $request->icon,
+            'title' => $request->title,
+            'short_description' => $request->short_description
+        ]);
+
+        Alert::success('Sukses', 'Data berhasil diubah');
+        return to_route('admin.why-choose-us.index');
     }
 
     public function updateTitle(Request $request) : RedirectResponse {
@@ -101,6 +111,14 @@ class WhyChooseUsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $WhyChooseUs = WhyChooseUs::findOrFail($id);
+            $WhyChooseUs->delete();
+
+            Alert::success('Sukses', 'Data telah berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Data telah berhasil dihapus']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
