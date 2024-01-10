@@ -44,7 +44,7 @@ class WhyChooseUsController extends Controller
         ]);
 
         Alert::success('Sukses', 'Data berhasil ditambahkan');
-        return to_route('admin.slider.index');
+        return to_route('admin.why-choose-us.index');
     }
 
     /**
