@@ -40,7 +40,7 @@
                 <div class="menu-title">Kelola Restoran</div>
             </a>
             <ul>
-                <li> <a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>Kategori Produk</a>
+                <li> <a href="{{ route('admin.product-category.index') }}"><i class="bx bx-right-arrow-alt"></i>Kategori Produk</a>
                 </li>
                 <li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Product
                         Details</a>
