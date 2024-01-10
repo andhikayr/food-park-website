@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductCategoryRequest;
 use App\Models\ProductCategory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Str;
 
 class ProductCategoryController extends Controller
 {
@@ -14,23 +17,32 @@ class ProductCategoryController extends Controller
      */
     public function index() : View
     {
-        return view('admin.product.category.index');
+        $productCategory = ProductCategory::latest()->get();
+        return view('admin.product.category.index', compact('productCategory'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
-        //
+        return view('admin.product.category.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductCategoryRequest $request)
     {
-        //
+        ProductCategory::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'status' => $request->status,
+            'show_at_home' => $request->show_at_home
+        ]);
+
+        Alert::success('Sukses', 'Data berhasil ditambahkan');
+        return to_route('admin.product-category.index');
     }
 
     /**
