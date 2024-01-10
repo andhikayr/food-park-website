@@ -21,26 +21,26 @@
         <li class="menu-label">Pengaturan Menu Homepage</li>
         <li>
             <a href="{{ route('admin.slider.index') }}">
-                <div class="parent-icon"><i class='bx bx-card'></i>
+                <div class="parent-icon"><i class='fas fa-list'></i>
                 </div>
                 <div class="menu-title">Slider Produk</div>
             </a>
         </li>
-	<li>
+        <li>
             <a href="{{ route('admin.why-choose-us.index') }}">
-                <div class="parent-icon"><i class='bx bx-card'></i>
+                <div class="parent-icon"><i class='fas fa-list'></i>
                 </div>
                 <div class="menu-title">"Mengapa Memilih Kita"</div>
             </a>
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
+                <div class="parent-icon"><i class='fas fa-utensils'></i>
                 </div>
-                <div class="menu-title">eCommerce</div>
+                <div class="menu-title">Kelola Restoran</div>
             </a>
             <ul>
-                <li> <a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>Products</a>
+                <li> <a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>Kategori Produk</a>
                 </li>
                 <li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Product
                         Details</a>

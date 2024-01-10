@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
@@ -35,9 +36,12 @@ Route::prefix('admin')->as('admin.')->group(function () {
         // Pengaturan slider produk
         Route::resource('slider', SliderController::class);
 
-        // Pengaturan teks "Mengapa Memilih Kita"
+        // Pengaturan bagian "Mengapa Memilih Kita"
         Route::put('why-choose-title-update', [WhyChooseUsController::class, 'updateTitle'])->name('why-choose-title.update');
         Route::resource('why-choose-us', WhyChooseUsController::class);
+
+        // Pengaturan Produk
+        Route::resource('product-category', ProductCategoryController::class);
     });
 });
 
