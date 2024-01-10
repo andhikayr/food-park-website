@@ -55,7 +55,7 @@ class SliderController extends Controller
             'status' => $request->status
         ]);
 
-        Alert::success('Sukses', 'Produk slider telah berhasil ditambahkan');
+        Alert::success('Sukses', 'Data telah berhasil ditambahkan');
         return to_route('admin.slider.index');
     }
 
@@ -111,7 +111,7 @@ class SliderController extends Controller
             'status' => $request->status
         ]);
 
-        Alert::success('Sukses', 'Produk slider telah berhasil diperbarui');
+        Alert::success('Sukses', 'Data telah berhasil diperbarui');
         return to_route('admin.slider.index');
     }
 
@@ -128,8 +128,8 @@ class SliderController extends Controller
             }
             $slider->delete();
 
-            Alert::success('Sukses', 'Produk slider telah berhasil dihapus');
-            return response(['status' => 'success', 'message' => 'Produk slider telah berhasil dihapus']);
+            Alert::success('Sukses', 'Data telah berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Data telah berhasil dihapus']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }
