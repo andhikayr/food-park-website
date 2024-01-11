@@ -67,7 +67,7 @@ class WhyChooseUsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(WhyChooseUsRequest $request, string $id)
+    public function update(WhyChooseUsRequest $request, string $id) : RedirectResponse
     {
         $WhyChooseUs = WhyChooseUs::findOrFail($id);
         $WhyChooseUs->update([

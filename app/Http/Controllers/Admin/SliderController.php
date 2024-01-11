@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -30,7 +31,7 @@ class SliderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'image' => 'required|max:1024|image|mimes:png,jpg,jpeg',
@@ -78,7 +79,7 @@ class SliderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id) : RedirectResponse
     {
         $request->validate([
             'image' => 'max:1024|image|mimes:png,jpg,jpeg',
