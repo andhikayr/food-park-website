@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="{{ asset('plugins/IconPicker/iconpicker-1.5.0.css') }}">
     <!-- dropify CSS -->
     <link rel="stylesheet" href="{{ asset('plugins/dropify/css/dropify.min.css') }}">
+    <!-- select2 CSS -->
+    <link href="{{ asset('admin/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('admin/assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
     <title>@yield('title') | Food Park Dashboard</title>
 </head>
 
@@ -82,6 +85,7 @@
     <script src="{{ asset('plugins/dropify/js/dropify.min.js') }}"></script>
     <script src="{{ asset('plugins/sweetalert2/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('plugins/IconPicker/iconpicker-1.5.0.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugins/select2/js/select2.min.js') }}"></script>
     <script>
         // Munculkan error dengan menggunakan toastr
         toastr.options.closeButton = true;
