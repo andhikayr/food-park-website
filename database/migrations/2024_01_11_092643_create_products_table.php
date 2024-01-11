@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {//
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('product_categories')->onDelete('cascade');
             $table->string('short_description');
             $table->text('long_description');
-            $table->string('price');
-            $table->string('offer_price')->default(0);
+            $table->string('price', 15);
+            $table->string('offer_price', 15)->default(0);
             $table->string('sku')->nullable();
             $table->string('seo_title')->nullable();
             $table->string('seo_description')->nullable();
