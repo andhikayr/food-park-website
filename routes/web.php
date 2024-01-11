@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
@@ -41,7 +42,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::resource('why-choose-us', WhyChooseUsController::class);
 
         // Pengaturan Produk
+        /* Produk kategori */
         Route::resource('product-category', ProductCategoryController::class);
+        /* Produk */
+        Route::resource('product', ProductController::class);
     });
 });
 

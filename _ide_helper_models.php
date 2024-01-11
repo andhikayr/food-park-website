@@ -12,6 +12,43 @@
 
 namespace App\Models{
 /**
+ * App\Models\Product
+ *
+ * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ */
+	class Product extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\ProductCategory
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property int $status
+ * @property int $show_at_home
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereShowAtHome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereUpdatedAt($value)
+ */
+	class ProductCategory extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\SectionTitle
  *
  * @property int $id
