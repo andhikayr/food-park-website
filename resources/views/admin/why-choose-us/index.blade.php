@@ -74,7 +74,7 @@
                                 <td><i class="{{ $item->icon }} ms-2 mt-2" style="transform: scale(2)"></i></td>
                                 <td>{{ $item->title }}</td>
                                 @if ($item->status === 1)
-                                    <td><span class="badge rounded-pill bg-success">Aktif</span></td>
+                                    <td><span class="badge rounded-pill bg-primary">Aktif</span></td>
                                 @else
                                     <td><span class="badge rounded-pill bg-danger">Tidak Aktif</span></td>
                                 @endif
