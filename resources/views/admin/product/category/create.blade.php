@@ -28,7 +28,7 @@
                             <p class="mt-3 text-secondary">* kolom status digunakan untuk mengatur apakah kategori produk ini muncul atau tidak</p>
                         </div>
                         <div class="col-md-6">
-                            <label for="show_at_home" class="form-label">Tampilkan di Home</label>
+                            <label for="show_at_home" class="form-label">Tampilkan di Homepage</label>
                             <select name="show_at_home" id="show_at_home" class="form-select">
                                 <option value="1">Ya</option>
                                 <option value="0">Tidak</option>
