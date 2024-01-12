@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('short_description');
             $table->text('long_description');
             $table->string('price', 15);
-            $table->string('offer_price', 15)->default(0);
+            $table->string('offer_price', 15)->default('0')->nullable();
             $table->string('sku')->nullable();
             $table->string('seo_title')->nullable();
             $table->string('seo_description')->nullable();
