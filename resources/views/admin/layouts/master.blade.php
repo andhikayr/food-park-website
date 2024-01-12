@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('admin/assets/images/favicon-32x32.png') }}" type="image/png" />
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <!--plugins-->
     <link href="{{ asset('admin/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
@@ -34,7 +33,10 @@
     <link rel="stylesheet" href="{{ asset('plugins/dropify/css/dropify.min.css') }}">
     <!-- select2 CSS -->
     <link href="{{ asset('admin/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('admin/assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
+    <!-- quilljs CSS -->
+    <link href="{{ asset('plugins/quilljs/quill.snow.css') }}" rel="stylesheet">
+
     <title>@yield('title') | Food Park Dashboard</title>
 </head>
 
@@ -86,6 +88,8 @@
     <script src="{{ asset('plugins/sweetalert2/sweetalert2@11.js') }}"></script>
     <script src="{{ asset('plugins/IconPicker/iconpicker-1.5.0.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('plugins/quilljs/quill.min.js') }}"></script>
+
     <script>
         // Munculkan error dengan menggunakan toastr
         toastr.options.closeButton = true;
@@ -161,6 +165,21 @@
                     }
                 });
             });
+        });
+
+        // Inisialisasi quilljs
+        var editor = new Quill('#editor', {
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                    ["bold", "italic"],
+                    ["link", "blockquote", "code-block"],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    [{ script: "sub" }, { script: "super" }],
+                ]
+            },
+            placeholder: 'Ketik sesuatu disini',
+            theme: 'snow',
         });
     </script>
     @stack('scripts')
