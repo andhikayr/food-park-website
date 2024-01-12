@@ -17,7 +17,7 @@
                         <div class="col-12">
                             <label for="name" class="form-label">Nama Kategori Produk *</label>
                             <input type="text" class="form-control" id="name"
-                                name="name" required maxlength="255">
+                                name="name" required maxlength="255" value="{{ old('name') }}">
                         </div>
                         <div class="col-md-6">
                             <label for="status" class="form-label">Status</label>

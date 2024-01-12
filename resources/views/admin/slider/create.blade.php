@@ -26,7 +26,7 @@
                             <label for="product_offer" class="form-label">Diskon Produk (Persentase)</label>
                             <div class="input-group">
                                 <input type="number" class="form-control" id="product_offer"
-                                name="product_offer" min="1" max="100">
+                                name="product_offer" min="1" max="100" value="{{ old('product_offer') }}">
                                 <span class="input-group-text">%</span>
                             </div>
 
@@ -34,22 +34,22 @@
                         <div class="col-md-6">
                             <label for="title" class="form-label">Judul *</label>
                             <input type="text" class="form-control" id="title"
-                                name="title" required maxlength="255">
+                                name="title" required maxlength="255" value="{{ old('title') }}">
                         </div>
                         <div class="col-md-6">
                             <label for="sub_title" class="form-label">Sub Judul *</label>
                             <input type="text" class="form-control" id="sub_title"
-                                name="sub_title" required maxlength="255">
+                                name="sub_title" required maxlength="255" value="{{ old('sub_title') }}">
                         </div>
                         <div class="col-md-6">
                             <label for="button_link" class="form-label">Link Produk</label>
                             <input type="text" class="form-control" id="button_link"
-                                name="button_link" maxlength="255">
+                                name="button_link" maxlength="255" value="{{ old('button_link') }}">
                         </div>
                         <div class="col-12">
                             <label for="short_description" class="form-label">Deskripsi Singkat *</label>
                             <input type="text" class="form-control" id="short_description"
-                                name="short_description" required maxlength="255">
+                                name="short_description" required maxlength="255"  value="{{ old('short_description') }}">
                         </div>
                         <div class="col-12">
                             <label for="status" class="form-label">Status</label>

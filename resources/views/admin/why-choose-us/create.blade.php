@@ -27,12 +27,12 @@
                             <div class="col-md-6">
                                 <label for="title" class="form-label">Judul *</label>
                                 <input type="text" class="form-control" id="title" name="title" required
-                                    maxlength="30">
+                                    maxlength="30" value="{{ old('title') }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="short_description" class="form-label">Deskripsi Singkat *</label>
                                 <input type="text" class="form-control" id="short_description" name="short_description"
-                                    maxlength="100">
+                                    maxlength="100" value="{{ old('short_description') }}">
                             </div>
                             <div class="col-md-6">
                                 <label for="status" class="form-label">Status</label>
