@@ -33,15 +33,15 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $item->name }}</td>
                                 @if ($item->status === 1)
-                                    <td><span class="badge rounded-pill bg-success">Aktif</span></td>
-                                @else
-                                    <td><span class="badge rounded-pill bg-danger">Tidak Aktif</span></td>
-                                @endif
-
-                                @if ($item->show_at_home === 1)
                                     <td><span class="badge rounded-pill bg-success">Ya</span></td>
                                 @else
                                     <td><span class="badge rounded-pill bg-danger">Tidak</span></td>
+                                @endif
+
+                                @if ($item->show_at_home === 1)
+                                    <td><span class="badge rounded-pill bg-success">Aktif</span></td>
+                                @else
+                                    <td><span class="badge rounded-pill bg-danger">Tidak Aktif</span></td>
                                 @endif
                                 <td>
                                     <a class="pe-1 btn btn-primary" href="{{ route('admin.product-category.edit', $item->id) }}"
