@@ -36,7 +36,7 @@ class ProductController extends Controller
     public function store(Request $request) : RedirectResponse
     {
         $request->validate([
-            'image' => 'thumb_image|max:1024|image|png,jpg,jpeg',
+            'image' => 'required|max:1024|image|mimes:png,jpg,jpeg',
             'name' => 'required|max:255',
             'category_id' => 'required',
             'price' => 'required|max:15',
@@ -83,17 +83,61 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+        $product = Product::findOrFail($id);
+        $kategoriProduk = ProductCategory::all();
+        return view('admin.product.edit', compact('product', 'kategoriProduk'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id) : RedirectResponse
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $request->validate([
+            'thumb_image' => 'max:1024|image|mimes:png,jpg,jpeg',
+            'name' => 'required|max:255',
+            'category_id' => 'required',
+            'price' => 'required|max:15',
+            'offer_price' => 'nullable|max:15',
+            'short_description' => 'required|max:255',
+            'long_description' => 'required',
+            'seo_title' => 'max:255',
+            'seo_description' => 'max:255',
+            'show_at_home' => 'boolean',
+            'status' => 'required|boolean'
+        ]);
+
+        if ($request->hasFile('thumb_image')) {
+            $path = public_path('/admin/uploads/product_image/') . $product->thumb_image;
+            if (file_exists($path)) {
+                unlink($path);
+                $imageName = 'product_img_' . date('YmdHis') . '.' . $request->file('thumb_image')->extension();
+                $request->file('thumb_image')->move(public_path() . '/admin/uploads/product_image', $imageName);
+                $product['thumb_image'] = $imageName;
+            }
+        }
+
+        $product->update([
+            'name' => $request->name,
+            'slug' => generateUniqueSlug('Product', $request->name),
+            'category_id' => $request->category_id,
+            'price' => $request->price,
+            'offer_price' => $request->offer_price,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+            'sku' => $request->sku,
+            'seo_title' => $request->seo_title,
+            'seo_description' => $request->seo_description,
+            'show_at_home' => $request->show_at_home,
+            'status' => $request->status,
+        ]);
+
+        Alert::success('Sukses', 'Data berhasil diedit');
+        return to_route('admin.product.index');
     }
 
     /**
@@ -101,6 +145,18 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $product = Product::findOrFail($id);
+            $path = public_path('/admin/uploads/product_image/') . $product->thumb_image;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+            $product->delete();
+
+            Alert::success('Sukses', 'Data telah berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Data telah berhasil dihapus']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
