@@ -34,7 +34,8 @@
                         @foreach ($product as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td><img src="{{ asset('admin/uploads/product_image/' . $item->thumb_image) }}" width="120px" height="120px"></td>
+                                <td><img src="{{ asset('admin/uploads/product_image/' . $item->thumb_image) }}"
+                                        width="120px" height="120px"></td>
                                 <td>{{ $item->name }}</td>
                                 <td>Rp. {{ $item->price }}</td>
                                 @if ($item->offer_price)
@@ -61,6 +62,17 @@
                                     <a class="pe-2 btn btn-danger delete-item"
                                         href="{{ route('admin.product.destroy', $item->id) }}" title="Hapus Data"><i
                                             class="fas fa-trash"></i></a>
+                                    |
+                                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false"><i class="fas fa-cog"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Another action</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         @endforeach
@@ -88,7 +100,7 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 language: {
-                    url: '{{ asset("admin/assets/plugins/datatable/id.json") }}',
+                    url: '{{ asset('admin/assets/plugins/datatable/id.json') }}',
                 },
             });
         });
