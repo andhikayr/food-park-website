@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="p-4 border rounded">
-                    <form method="POST" class="row g-3" action="{{ route('admin.product-category.update') }}" enctype="multipart/form-data">
+                    <form method="POST" class="row g-3" action="{{ route('admin.product-category.update', $productCategory->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="col-12">
