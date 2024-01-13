@@ -21,7 +21,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Gambar Produk</th>
+                            <th>Thumbnail Produk</th>
                             <th>Nama Produk</th>
                             <th>Harga</th>
                             <th>Harga Diskon</th>
@@ -64,13 +64,9 @@
                                             class="fas fa-trash"></i></a>
                                     |
                                     <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false"><i class="fas fa-cog"></i></button>
+                                        aria-expanded="false" title="Opsi Lainnya"><i class="fas fa-cog"></i></button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Another action</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a>
+                                        <li><a class="dropdown-item" href="{{ route('admin.product-gallery.show.index', $item->id) }}">Galeri Produk</a>
                                         </li>
                                     </ul>
                                 </td>
@@ -80,7 +76,7 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Gambar Produk</th>
+                            <th>Thumbnail Produk</th>
                             <th>Nama Produk</th>
                             <th>Harga</th>
                             <th>Harga Diskon</th>

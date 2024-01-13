@@ -16,7 +16,7 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="image" class="mb-3">Gambar Produk *</label>
+                                <label for="image" class="mb-3">Gambar Produk Thumbnail *</label>
                                 <input class="dropify-id" type="file" name="thumb_image" id="thumb_image"
                                     class="form-control" data-max-file-size="1M" data-allowed-file-extensions="jpg jpeg png"
                                     accept="image/jpg, image/png, image/jpeg" required>
