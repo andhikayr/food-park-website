@@ -166,21 +166,6 @@
                 });
             });
         });
-
-        // Inisialisasi quilljs
-        var editor = new Quill('#editor', {
-            modules: {
-                toolbar: [
-                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                    ["bold", "italic"],
-                    ["link", "blockquote", "code-block"],
-                    [{ list: "ordered" }, { list: "bullet" }],
-                    [{ script: "sub" }, { script: "super" }],
-                ]
-            },
-            placeholder: 'Ketik sesuatu disini',
-            theme: 'snow',
-        });
     </script>
     @stack('scripts')
     <script src="{{ asset('admin/assets/js/index.js') }}"></script>
