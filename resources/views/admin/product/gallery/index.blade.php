@@ -16,8 +16,9 @@
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $productId }}">
                     <div class="col-12">
-                        <label for="image">Gambar Produk</label>
-                        <input type="file" name="image[]" id="image" class="form-control" accept="image/jpg, image/jpeg, image/png" multiple>
+                        <label for="image" class="mb-3">Gambar Produk</label>
+                        <input class="dropify-id" type="file" name="image[]" id="image" class="form-control" accept="image/jpg, image/jpeg, image/png" data-show-remove="false" multiple>
+                        <p id="output" class="pt-3"></p>
                         <p class="text-secondary my-3">* Ukuran gambar tidak boleh lebih dari 4 MB. Format
                             gambar yang diizinkan : JPG, JPEG, PNG</p>
                     </div>
@@ -73,6 +74,11 @@
                     url: '{{ asset('admin/assets/plugins/datatable/id.json') }}',
                 },
             });
+        });
+
+        document.querySelector('#image').addEventListener('change', function(e) {
+             var fileCount = e.target.files.length;
+             document.querySelector('#output').textContent = 'Total gambar yang dipilih : ' + fileCount;
         });
     </script>
 @endpush
