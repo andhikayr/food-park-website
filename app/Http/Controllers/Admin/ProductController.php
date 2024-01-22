@@ -50,7 +50,7 @@ class ProductController extends Controller
         ]);
 
         $imageName = 'product_img_' . date('YmdHis') . '.' . $request->file('thumb_image')->extension();
-        $request->file('thumb_image')->move(public_path() . '/admin/uploads/product_image', $imageName);
+        $request->file('thumb_image')->move('admin/uploads/product_image/', $imageName);
 
         Product::create([
             'thumb_image' => $imageName,
@@ -112,11 +112,10 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('thumb_image')) {
-            $path = public_path('/admin/uploads/product_image/') . $product->thumb_image;
-            if (file_exists($path)) {
-                unlink($path);
+            if (file_exists('admin/uploads/product_image/') . $product->thumb_image) {
+                unlink('admin/uploads/product_image/') . $product->thumb_image;
                 $imageName = 'product_img_' . date('YmdHis') . '.' . $request->file('thumb_image')->extension();
-                $request->file('thumb_image')->move(public_path() . '/admin/uploads/product_image', $imageName);
+                $request->file('thumb_image')->move('admin/uploads/product_image/', $imageName);
                 $product['thumb_image'] = $imageName;
             }
         }
@@ -147,9 +146,8 @@ class ProductController extends Controller
     {
         try {
             $product = Product::findOrFail($id);
-            $path = public_path('/admin/uploads/product_image/') . $product->thumb_image;
-            if (file_exists($path)) {
-                unlink($path);
+            if (file_exists('admin/uploads/product_image/') . $product->thumb_image) {
+                unlink('admin/uploads/product_image/') . $product->thumb_image;
             }
             $product->delete();
 

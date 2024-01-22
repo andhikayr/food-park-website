@@ -44,7 +44,7 @@ class SliderController extends Controller
         ]);
 
         $imageName = 'slider_img_' . date('YmdHis') . '.' . $request->file('image')->extension();
-        $request->file('image')->move(public_path() . '/admin/uploads/slider_image', $imageName);
+        $request->file('image')->move('admin/uploads/slider_image/', $imageName);
 
         Slider::create([
             'image' => $imageName,
@@ -94,11 +94,10 @@ class SliderController extends Controller
         $slider = Slider::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            $path = public_path('/admin/uploads/slider_image/') . $slider->image;
-            if (file_exists($path)) {
-                unlink($path);
+            if (file_exists('admin/uploads/slider_image/') . $slider->image) {
+                unlink('admin/uploads/slider_image/') . $slider->image;
                 $imageName = 'slider_img_' . date('YmdHis') . '.' . $request->file('image')->extension();
-                $request->file('image')->move(public_path() . '/admin/uploads/slider_image', $imageName);
+                $request->file('image')->move('admin/uploads/slider_image/', $imageName);
                 $slider['image'] = $imageName;
             }
         }
@@ -123,9 +122,8 @@ class SliderController extends Controller
     {
         try {
             $slider = Slider::findOrFail($id);
-            $path = public_path('/admin/uploads/slider_image/') . $slider->image;
-            if (file_exists($path)) {
-                unlink($path);
+            if (file_exists('admin/uploads/slider_image/') . $slider->image) {
+                unlink('admin/uploads/slider_image/') . $slider->image;
             }
             $slider->delete();
 

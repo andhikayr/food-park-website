@@ -55,12 +55,12 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if ($user->image) {
-            unlink(public_path('/frontend/uploads/profile_image/' . $user->image));
+            unlink('frontend/uploads/profile_image/' . $user->image);
             $imageName = 'user_' . date('YmdHis') . '.' . $request->file('image')->extension();
-            $request->file('image')->move(public_path() . '/frontend/uploads/profile_image', $imageName);
+            $request->file('image')->move('frontend/uploads/profile_image/', $imageName);
         } else {
             $imageName = 'user_' . date('YmdHis') . '.' . $request->file('image')->extension();
-            $request->file('image')->move(public_path() . '/frontend/uploads/profile_image', $imageName);
+            $request->file('image')->move('frontend/uploads/profile_image/', $imageName);
         }
 
         $user->update([
