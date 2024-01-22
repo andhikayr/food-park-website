@@ -102,7 +102,7 @@ class WhyChooseUsController extends Controller
             ['value' => $request->why_choose_sub_title]
         );
 
-        Alert::success('Sukses', 'Judul "Mengapa Memilih Kita" sudah berhasil disimpan');
+        Alert::success('Sukses', 'Data berhasil disimpan');
         return back();
     }
 

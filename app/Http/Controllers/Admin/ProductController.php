@@ -68,7 +68,7 @@ class ProductController extends Controller
             'status' => $request->status,
         ]);
 
-        Alert::success('Sukses', 'Data berhasil ditambahkan');
+        Alert::success('Sukses', 'Produk berhasil disimpan');
         return to_route('admin.product.index');
     }
 
@@ -135,7 +135,7 @@ class ProductController extends Controller
             'status' => $request->status,
         ]);
 
-        Alert::success('Sukses', 'Data berhasil diedit');
+        Alert::success('Sukses', 'Produk berhasil diubah');
         return to_route('admin.product.index');
     }
 

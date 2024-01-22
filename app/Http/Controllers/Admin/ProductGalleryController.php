@@ -51,7 +51,7 @@ class ProductGalleryController extends Controller
             ]);
         }
 
-        Alert::success('Sukses', 'Gambar berhasil ditambahkan');
+        Alert::success('Sukses', 'Gambar produk berhasil ditambahkan');
         return back();
     }
 
@@ -91,8 +91,8 @@ class ProductGalleryController extends Controller
             }
             $image->delete();
 
-            Alert::success('Sukses', 'Data telah berhasil dihapus');
-            return response(['status' => 'success', 'message' => 'Data telah berhasil dihapus']);
+            Alert::success('Sukses', 'Gambar produk telah berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Gambar produk telah berhasil dihapus']);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => $e->getMessage()]);
         }

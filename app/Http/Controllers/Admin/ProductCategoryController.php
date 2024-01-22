@@ -76,7 +76,7 @@ class ProductCategoryController extends Controller
             'show_at_home' => $request->show_at_home
         ]);
 
-        Alert::success('Sukses', 'Data berhasil diubah');
+        Alert::success('Sukses', 'Data berhasil disimpan');
         return to_route('admin.product-category.index');
     }
 
