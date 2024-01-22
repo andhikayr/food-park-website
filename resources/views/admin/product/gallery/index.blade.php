@@ -1,12 +1,13 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Data Galeri Produk
+    Galeri Produk {{ $product->name }}
 @endsection
 
 @section('content')
     <div class="d-flex align-items-center mb-3">
-        <h6 class="mb-0 text-uppercase">Data Galeri Produk</h6>
+        <h6 class="mb-0 text-uppercase">Galeri Produk {{ $product->name }}</h6>
+        <a href="{{ route('admin.product.index') }}" class="btn btn-primary ms-auto">Kembali</a>
     </div>
     <hr />
     <div class="card">
@@ -14,10 +15,11 @@
             <div class="col-12">
                 <form action="{{ route('admin.product-gallery.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="product_id" value="{{ $productId }}">
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="col-12">
-                        <label for="image" class="mb-3">Gambar Produk</label>
-                        <input class="dropify-id" type="file" name="image[]" id="image" class="form-control" accept="image/jpg, image/jpeg, image/png" data-show-remove="false" multiple>
+                        <label for="image" class="mb-3">Tambah Gambar Produk Galeri</label>
+                        <input class="dropify-id" type="file" name="image[]" id="image" class="form-control"
+                            accept="image/jpg, image/jpeg, image/png" data-show-remove="false" multiple>
                         <p id="output" class="pt-3"></p>
                         <p class="text-secondary my-3">* Ukuran gambar tidak boleh lebih dari 4 MB. Format
                             gambar yang diizinkan : JPG, JPEG, PNG</p>
@@ -27,8 +29,6 @@
                     </div>
                 </form>
             </div>
-
-
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -44,7 +44,8 @@
                         @foreach ($images as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td><img src="{{ asset('admin/uploads/product_image/' . $item->image) }}" width="120px" height="120px"></td>
+                                <td><img src="{{ asset('admin/uploads/product_image/' . $item->image) }}" width="120px"
+                                        height="120px"></td>
                                 <td>
                                     <a class="pe-2 btn btn-danger delete-item"
                                         href="{{ route('admin.product-gallery.destroy', $item->id) }}" title="Hapus Data"><i
@@ -77,8 +78,8 @@
         });
 
         document.querySelector('#image').addEventListener('change', function(e) {
-             var fileCount = e.target.files.length;
-             document.querySelector('#output').textContent = 'Total gambar yang dipilih : ' + fileCount;
+            var fileCount = e.target.files.length;
+            document.querySelector('#output').textContent = 'Total gambar yang dipilih : ' + fileCount;
         });
     </script>
 @endpush

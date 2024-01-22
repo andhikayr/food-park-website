@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\ProductGallery;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductGalleryController extends Controller
@@ -17,7 +19,8 @@ class ProductGalleryController extends Controller
     public function index($productId): View
     {
         $images = ProductGallery::where('product_id', $productId)->get();
-        return view('admin.product.gallery.index', compact('productId', 'images'));
+        $product = Product::findOrFail($productId);
+        return view('admin.product.gallery.index', compact('product', 'images'));
     }
 
     /**
@@ -79,8 +82,19 @@ class ProductGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) : Response
     {
-        //
+        try {
+            $image = ProductGallery::findOrFail($id);
+            if (file_exists('admin/uploads/product_image/' . $image->image)) {
+                unlink('admin/uploads/product_image/' . $image->image);
+            }
+            $image->delete();
+
+            Alert::success('Sukses', 'Data telah berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Data telah berhasil dihapus']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
