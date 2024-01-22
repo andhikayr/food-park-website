@@ -146,8 +146,8 @@ class ProductController extends Controller
     {
         try {
             $product = Product::findOrFail($id);
-            if (file_exists('admin/uploads/product_image/') . $product->thumb_image) {
-                unlink('admin/uploads/product_image/') . $product->thumb_image;
+            if (file_exists('admin/uploads/product_image/' . $product->thumb_image)) {
+                unlink('admin/uploads/product_image/' . $product->thumb_image);
             }
             $product->delete();
 
