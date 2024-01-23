@@ -112,8 +112,8 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('thumb_image')) {
-            if (file_exists('admin/uploads/product_image/') . $product->thumb_image) {
-                unlink('admin/uploads/product_image/') . $product->thumb_image;
+            if (file_exists('admin/uploads/product_image/' . $product->thumb_image)) {
+                unlink('admin/uploads/product_image/' . $product->thumb_image);
                 $imageName = 'product_img_' . date('YmdHis') . '.' . $request->file('thumb_image')->extension();
                 $request->file('thumb_image')->move('admin/uploads/product_image/', $imageName);
                 $product['thumb_image'] = $imageName;
