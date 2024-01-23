@@ -8,6 +8,7 @@ use App\Models\ProductSize;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductSizeController extends Controller
@@ -18,7 +19,8 @@ class ProductSizeController extends Controller
     public function index($productId) : View
     {
         $product = Product::findOrFail($productId);
-        return view('admin.product.product-size.index', compact('productId', 'product'));
+        $sizes = ProductSize::where('product_id', $product->id)->get();
+        return view('admin.product.product-size.index', compact('sizes', 'product'));
     }
 
     /**
@@ -47,7 +49,7 @@ class ProductSizeController extends Controller
         ]);
 
         Alert::success('Berhasil', 'Varian Ukuran Produk berhasil ditambahkan');
-        return to_route('admin.product-size.index');
+        return back();
     }
 
     /**
@@ -77,8 +79,16 @@ class ProductSizeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) : Response
     {
-        //
+        try {
+            $product = ProductSize::findOrFail($id);
+            $product->delete();
+
+            Alert::success('Sukses', 'Varian ukuran produk ini telah berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Varian ukuran produk ini telah berhasil dihapus']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
