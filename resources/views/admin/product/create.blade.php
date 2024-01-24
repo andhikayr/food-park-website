@@ -59,9 +59,8 @@
                             </div>
                             <!-- Create the editor container -->
                             <div class="col-12">
-                                <label for="editor" class="form-label">Deskripsi Lengkap</label>
-                                <input type="hidden" name="long_description">
-                                <div id="editor" style="height: 200px"></div>
+                                <label for="long_description" class="form-label">Deskripsi Lengkap</label>
+                                <textarea name="long_description" id="summernote"></textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="show_at_home" class="form-label">Tampilkan di Homepage</label>
@@ -91,6 +90,13 @@
 @endsection
 @push('scripts')
     <script>
+        // summernote
+        $('#summernote').summernote({
+            placeholder: 'Ketik sesuatu disini...',
+            tabsize: 2,
+            height: 400
+        });
+
         // function penambah titik pada kolom harga
         function formatRupiah(angka) {
             var rupiah = '';
@@ -116,24 +122,6 @@
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
             placeholder: $(this).data('placeholder'),
             allowClear: Boolean($(this).data('allow-clear')),
-        });
-
-        editor.on('text-change', function(delta, oldDelta, source) {
-            document.querySelector("input[name='long_description']").value = editor.root.innerHTML;
-        });
-
-        var editor = new Quill('#editor', {
-            modules: {
-                toolbar: [
-                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                    ["bold", "italic"],
-                    ["link", "blockquote", "code-block"],
-                    [{ list: "ordered" }, { list: "bullet" }],
-                    [{ script: "sub" }, { script: "super" }],
-                ]
-            },
-            placeholder: 'Ketik sesuatu disini',
-            theme: 'snow',
         });
     </script>
 @endpush

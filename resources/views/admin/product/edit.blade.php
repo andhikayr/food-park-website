@@ -20,7 +20,7 @@
                                 <label for="image" class="mb-3">Gambar Produk Thumbnail</label>
                                 <input class="dropify-id" type="file" name="thumb_image" id="thumb_image"
                                     class="form-control" data-max-file-size="1M" data-allowed-file-extensions="jpg jpeg png"
-                                    accept="image/jpg, image/png, image/jpeg" required data-default-file="{{ asset('admin/uploads/product_image/' . $product->thumb_image) }}">
+                                    accept="image/jpg, image/png, image/jpeg" data-default-file="{{ asset('admin/uploads/product_image/' . $product->thumb_image) }}">
                                 <p class="text-danger mt-3 mb-0">*Gambar tidak boleh lebih dari 1024 KB (1 MB)</p>
                             </div>
                             <div class="col-12">
@@ -61,8 +61,7 @@
                             <!-- Create the editor container -->
                             <div class="col-12">
                                 <label for="editor" class="form-label">Deskripsi Lengkap</label>
-                                <input type="hidden" name="long_description" value="{{ $product->long_description }}">
-                                <div id="editor" style="height: 200px">{!! $product->long_description !!}</div>
+                                <textarea name="long_description" id="summernote">{!! $product->long_description !!}</textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="show_at_home" class="form-label">Tampilkan di Homepage</label>
@@ -92,6 +91,13 @@
 @endsection
 @push('scripts')
     <script>
+        // summernote
+        $('#summernote').summernote({
+            placeholder: 'Ketik sesuatu disini...',
+            tabsize: 2,
+            height: 400
+        });
+
         // function penambah titik pada kolom harga
         function formatRupiah(angka) {
             var rupiah = '';
@@ -117,24 +123,6 @@
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
             placeholder: $(this).data('placeholder'),
             allowClear: Boolean($(this).data('allow-clear')),
-        });
-
-        editor.on('text-change', function(delta, oldDelta, source) {
-            document.querySelector("input[name='long_description']").value = editor.root.innerHTML;
-        });
-
-        var editor = new Quill('#editor', {
-            modules: {
-                toolbar: [
-                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                    ["bold", "italic"],
-                    ["link", "blockquote", "code-block"],
-                    [{ list: "ordered" }, { list: "bullet" }],
-                    [{ script: "sub" }, { script: "super" }],
-                ]
-            },
-            placeholder: 'Ketik sesuatu disini',
-            theme: 'snow',
         });
     </script>
 @endpush

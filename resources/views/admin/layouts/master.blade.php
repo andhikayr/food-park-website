@@ -34,8 +34,8 @@
     <!-- select2 CSS -->
     <link href="{{ asset('admin/assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/assets/plugins/select2/css/select2-bootstrap4.css') }}" rel="stylesheet" />
-    <!-- quilljs CSS -->
-    <link href="{{ asset('plugins/quilljs/quill.snow.css') }}" rel="stylesheet">
+    <!-- Summernote CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
     <title>@yield('title') | Food Park Dashboard</title>
 </head>
@@ -89,6 +89,7 @@
     <script src="{{ asset('plugins/IconPicker/iconpicker-1.5.0.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('plugins/quilljs/quill.min.js') }}"></script>
+    <script src="{{ asset('plugins/summernote/summernote-lite.min.js') }}"></script>
 
     <script>
         // Munculkan error dengan menggunakan toastr
