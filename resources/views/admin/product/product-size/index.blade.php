@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Ukuran Produk {{ $product->name }}
+    Opsi Tambahan Produk {{ $product->name }}
 @endsection
 
 @section('content')
     <div class="d-flex align-items-center mb-3">
-        <h6 class="mb-0 text-uppercase">Ukuran Produk {{ $product->name }}</h6>
+        <h6 class="mb-0 text-uppercase">Opsi Tambahan Produk {{ $product->name }}</h6>
         <a href="{{ route('admin.product.index') }}" class="btn btn-primary ms-auto">Kembali</a>
     </div>
     <hr />
