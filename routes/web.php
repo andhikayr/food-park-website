@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SliderController;
@@ -55,6 +56,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
         /* Variasi Ukuran Produk */
         Route::get('product-size/{product}', [ProductSizeController::class, 'index'])->name('product-size.show.index');
         Route::resource('product-size', ProductSizeController::class);
+        /* Opsi Tambahan Produk */
+        Route::resource('product-option', ProductOptionController::class);
     });
 });
 

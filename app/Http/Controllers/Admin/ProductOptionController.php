@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductOption;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductOptionController extends Controller
 {
@@ -39,6 +41,15 @@ class ProductOptionController extends Controller
             'price.numeric' => 'Harga produk harus berupa angka',
             'price.max' => 'Harga produk tidak boleh lebih dari 15 karakter'
         ]);
+
+        ProductOption::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'product_id' => $request->product_id
+        ]);
+
+        Alert::success('Berhasil', 'Opsi Tambahan Produk berhasil ditambahkan');
+        return back();
     }
 
     /**
