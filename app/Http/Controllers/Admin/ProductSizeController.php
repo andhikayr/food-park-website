@@ -40,6 +40,11 @@ class ProductSizeController extends Controller
             'name' =>'required|max:255',
             'price' =>'required|numeric|max:15',
             'product_id' => 'required|integer'
+        ],[
+            'name.required' => 'Varian ukuran produk tidak boleh kosong',
+            'name.max' => 'Varian ukuran produk tidak boleh lebih dari 255 karakter',
+            'price.required' => 'Harga ukuran produk tidak boleh kosong',
+            'price.numeric' => 'Harga ukuran produk harus berupa angka',
         ]);
 
         ProductSize::create([
