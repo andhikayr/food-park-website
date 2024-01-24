@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductOption;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductOptionController extends Controller
@@ -28,7 +30,7 @@ class ProductOptionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'name' =>'required|max:255',
@@ -79,8 +81,16 @@ class ProductOptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) : Response
     {
-        //
+        try {
+            $options = ProductOption::findOrFail($id);
+            $options->delete();
+
+            Alert::success('Sukses', 'Opsi produk ini telah berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Opsi produk ini telah berhasil dihapus']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }

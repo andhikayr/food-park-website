@@ -119,20 +119,20 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Varian</th>
+                                    <th>Nama Opsi</th>
                                     <th>Harga</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($sizes as $item)
+                                @foreach ($options as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>Rp. {{ $item->price }}</td>
                                         <td>
                                             <a class="pe-2 btn btn-danger delete-item"
-                                                href="{{ route('admin.product-size.destroy', $item->id) }}"
+                                                href="{{ route('admin.product-option.destroy', $item->id) }}"
                                                 title="Hapus Data"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -141,7 +141,7 @@
                             <tfoot>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Varian</th>
+                                    <th>Nama Opsi</th>
                                     <th>Harga</th>
                                     <th>Opsi</th>
                                 </tr>
