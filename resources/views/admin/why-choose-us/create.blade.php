@@ -7,7 +7,14 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h6 class="mb-0 text-uppercase">Tambah Bagian "Mengapa Memilih Kita"</h6>
+            <div class="d-flex align-items-center mb-3">
+                <h6 class="mb-0 text-uppercase">Tambah Bagian "Mengapa Memilih Kita"</h6>
+                <div class="ms-auto">
+                    <div class="btn-group">
+                        <a href="{{ route('admin.why-choose-us.index') }}" class="btn btn-primary">Kembali</a>
+                    </div>
+                </div>
+            </div>
             <hr />
             <div class="card">
                 <div class="card-body">
