@@ -36,7 +36,7 @@ class ProductController extends Controller
     public function store(Request $request) : RedirectResponse
     {
         $request->validate([
-            'image' => 'required|max:1024|image|mimes:png,jpg,jpeg',
+            'thumb_image' => 'required|max:1024|image|mimes:png,jpg,jpeg',
             'name' => 'required|max:255',
             'category_id' => 'required',
             'price' => 'required|max:15',
