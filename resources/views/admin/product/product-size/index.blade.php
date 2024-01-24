@@ -115,7 +115,7 @@
                 <div class="card-body">
                     <h4 class="mb-4">Opsi Produk {{ $product->name }}</h4>
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="example2" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -158,6 +158,14 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
+                language: {
+                    url: '{{ asset('admin/assets/plugins/datatable/id.json') }}',
+                },
+            });
+        });
+
+        $(document).ready(function() {
+            $('#example2').DataTable({
                 language: {
                     url: '{{ asset('admin/assets/plugins/datatable/id.json') }}',
                 },
