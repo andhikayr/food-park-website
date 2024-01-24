@@ -68,7 +68,7 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="{{ route('admin.product-gallery.show.index', $item->id) }}">Galeri Produk</a>
                                         </li>
-                                        <li><a class="dropdown-item" href="{{ route('admin.product-size.show.index', $item->id) }}">Varian Ukuran Produk</a>
+                                        <li><a class="dropdown-item" href="{{ route('admin.product-size.show.index', $item->id) }}">Opsi Tambahan Produk</a>
                                         </li>
                                     </ul>
                                 </td>
