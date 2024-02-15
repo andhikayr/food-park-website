@@ -62,6 +62,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
         // Pengaturan umum
         Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+        Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.updateGeneralSetting');
     });
 });
 
