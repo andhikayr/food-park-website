@@ -46,6 +46,13 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{ route('admin.setting.index') }}">
+                <div class="parent-icon"><i class='bx bx-cog'></i>
+                </div>
+                <div class="menu-title">Pengaturan</div>
+            </a>
+        </li>
     </ul>
     <!--end navigation-->
 </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Controllers\Frontend\DashboardController as FrontendDashboardController;
@@ -58,6 +59,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::resource('product-size', ProductSizeController::class);
         /* Opsi Tambahan Produk */
         Route::resource('product-option', ProductOptionController::class);
+
+        // Pengaturan umum
+        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
     });
 });
 
