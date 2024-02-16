@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\SettingsService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,6 +34,9 @@ class SettingController extends Controller
                 ]
             );
         }
+
+        $settingsService = app(SettingsService::class);
+        $settingsService->clearCacheSettings();
 
         Alert::success('Sukses', 'Data berhasil diubah');
         return back();
