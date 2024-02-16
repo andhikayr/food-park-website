@@ -15,7 +15,7 @@
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" data-bs-toggle="tab" href="#general-setting" role="tab" aria-selected="true">
                     <div class="d-flex align-items-center">
-                        <div class="tab-icon"><i class="bx bx-home font-18 me-1"></i>
+                        <div class="tab-icon"><i class="bx bx-cog font-18 me-1"></i>
                         </div>
                         <div class="tab-title">Pengaturan Umum</div>
                     </div>
@@ -47,7 +47,7 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="site_name">Nama Situs</label>
-                        <input type="text" name="site_name" id="site_name" class="form-control" required>
+                        <input type="text" name="site_name" id="site_name" class="form-control" value="{{ config('settings.site_name') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="site_default_currency">Mata Uang Default</label>
@@ -58,15 +58,15 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="site_currency_icon">Ikon Mata Uang</label>
-                            <input type="text" name="site_currency_icon" id="site_currency_icon" class="form-control" maxlength="4" required>
+                            <input type="text" name="site_currency_icon" id="site_currency_icon" class="form-control" maxlength="4" value="{{ config('settings.site_currency_icon') }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="site_currency_icon_position">Posisi Ikon Mata Uang</label>
                             <select name="site_currency_icon_position" id="site_currency_icon_position" class="single-select">
-                                <option value="Kiri">Kiri</option>
-                                <option value="Kanan">Kanan</option>
+                                <option @selected(config('settings.site_currency_icon_position') === 'Kiri') value="Kiri">Kiri</option>
+                                <option @selected(config('settings.site_currency_icon_position') === 'Kanan') value="Kanan">Kanan</option>
                             </select>
                         </div>
                     </div>
