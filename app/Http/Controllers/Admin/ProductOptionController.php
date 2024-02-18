@@ -34,7 +34,7 @@ class ProductOptionController extends Controller
     {
         $request->validate([
             'name' =>'required|max:255',
-            'price' =>'required|numeric|max:15',
+            'price' =>'required|numeric',
             'product_id' => 'required|integer'
         ],[
             'name.required' => 'Opsi produk tidak boleh kosong',
@@ -73,9 +73,29 @@ class ProductOptionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' =>'required|max:255',
+            'price' =>'required|numeric',
+            'product_id' => 'required|integer'
+        ],[
+            'name.required' => 'Opsi produk tidak boleh kosong',
+            'name.max' => 'Opsi produk tidak boleh lebih dari 255 karakter',
+            'price.required' => 'Harga produk tidak boleh kosong',
+            'price.numeric' => 'Harga produk harus berupa angka',
+            'price.max' => 'Harga produk tidak boleh lebih dari 15 karakter'
+        ]);
+
+        $productOption = ProductOption::findOrFail($id);
+        $productOption->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'product_id' => $request->product_id
+        ]);
+
+        Alert::success('Berhasil', 'Opsi Tambahan Produk berhasil diubah');
+        return back();
     }
 
     /**

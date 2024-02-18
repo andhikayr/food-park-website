@@ -78,9 +78,28 @@ class ProductSizeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' =>'required|max:255',
+            'price' =>'required|numeric',
+            'product_id' => 'required|integer'
+        ],[
+            'name.required' => 'Varian ukuran produk tidak boleh kosong',
+            'name.max' => 'Varian ukuran produk tidak boleh lebih dari 255 karakter',
+            'price.required' => 'Harga ukuran produk tidak boleh kosong',
+            'price.numeric' => 'Harga ukuran produk harus berupa angka',
+        ]);
+
+        $productSize = ProductSize::findOrFail($id);
+        $productSize->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'product_id' => $request->product_id
+        ]);
+
+        Alert::success('Berhasil', 'Varian Ukuran Produk berhasil diubah');
+        return back();
     }
 
     /**

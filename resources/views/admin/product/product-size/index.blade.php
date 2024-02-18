@@ -22,8 +22,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="name" class="mb-3">Varian Ukuran Produk</label>
-                                    <input type="text" name="name" id="name" class="form-control"
-                                        maxlength="255" required>
+                                    <input type="text" name="name" id="name" class="form-control" maxlength="255"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="price" class="mb-3">Harga</label>
@@ -59,13 +59,55 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>Rp. {{ $item->price }}</td>
+                                        <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td>
+                                            <button type="button" class="btn btn-primary pe-2" data-bs-toggle="modal"
+                                                data-bs-target="#itemModal{{ $item->id }}" title="Edit Data">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
                                             <a class="pe-2 btn btn-danger delete-item"
                                                 href="{{ route('admin.product-size.destroy', $item->id) }}"
                                                 title="Hapus Data"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="itemModal{{ $item->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="itemModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="itemModalLabel">Edit Varian Ukuran Produk
+                                                        {{ $product->name }}
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('admin.product-size.update', $item->id) }}" method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="product_id" value="{{ $item->product_id }}">
+                                                        <div class="form-group">
+                                                            <label for="name" class="mb-3">Varian Ukuran
+                                                                Produk</label>
+                                                            <input type="text" name="name" id="name"
+                                                                class="form-control" maxlength="255" required value="{{ $item->name }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="price" class="my-3">Harga</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"
+                                                                    id="inputGroupPrepend">Rp.</span>
+                                                                <input type="text" name="price" id="price"
+                                                                    class="form-control" maxlength="15" required value="{{ $item->price }}">
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                             <tfoot>
@@ -99,7 +141,7 @@
                                     <label for="price" class="mb-3">Harga</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="inputGroupPrepend">Rp.</span>
-                                        <input type="text" name="price" id="price-2" class="form-control"
+                                        <input type="text" name="price" id="price" class="form-control"
                                             maxlength="15" value="0" required>
                                     </div>
                                 </div>
@@ -129,13 +171,55 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>Rp. {{ $item->price }}</td>
+                                        <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                         <td>
+                                            <button type="button" class="btn btn-primary pe-2" data-bs-toggle="modal"
+                                                data-bs-target="#itemModal2{{ $item->id }}" title="Edit Data">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
                                             <a class="pe-2 btn btn-danger delete-item"
                                                 href="{{ route('admin.product-option.destroy', $item->id) }}"
                                                 title="Hapus Data"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="itemModal2{{ $item->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="itemModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="itemModalLabel">Edit Opsi Produk
+                                                        {{ $product->name }}
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('admin.product-option.update', $item->id) }}" method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="product_id" value="{{ $item->product_id }}">
+                                                        <div class="form-group">
+                                                            <label for="name" class="mb-3">Opsi
+                                                                Produk</label>
+                                                            <input type="text" name="name" id="name"
+                                                                class="form-control" maxlength="255" required value="{{ $item->name }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="price" class="my-3">Harga</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"
+                                                                    id="inputGroupPrepend">Rp.</span>
+                                                                <input type="text" name="price" id="price"
+                                                                    class="form-control" maxlength="15" required value="{{ $item->price }}">
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                             <tfoot>
@@ -170,25 +254,6 @@
                     url: '{{ asset('admin/assets/plugins/datatable/id.json') }}',
                 },
             });
-        });
-
-        // function penambah titik pada kolom harga
-        function formatRupiah(angka) {
-            var rupiah = '';
-            var angkarev = angka.toString().split('').reverse().join('');
-            for (var i = 0; i < angkarev.length; i++)
-                if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
-            return rupiah.split('', rupiah.length - 1).reverse().join('');
-        }
-
-        $('#price').keyup(function() {
-            var num = $(this).val().replace(/\./g, '');
-            $(this).val(formatRupiah(num));
-        });
-
-        $('#price-2').keyup(function() {
-            var num = $(this).val().replace(/\./g, '');
-            $(this).val(formatRupiah(num));
         });
     </script>
 @endpush
