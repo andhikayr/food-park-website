@@ -40,7 +40,7 @@ class ProductSizeController extends Controller
     {
         $request->validate([
             'name' =>'required|max:255',
-            'price' =>'required|numeric|max:15',
+            'price' =>'required|numeric',
             'product_id' => 'required|integer'
         ],[
             'name.required' => 'Varian ukuran produk tidak boleh kosong',
