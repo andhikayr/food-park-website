@@ -14,10 +14,10 @@
     </p>
     <h4 class="price">
         @if ($product->offer_price > 0)
-            Rp.{{ $product->offer_price }}
-            <del>Rp.{{ $product->price }}</del>
+            Rp. {{ number_format($product->offer_price, 0, ',', '.') }}
+            <del>Rp. {{ number_format($product->price, 0, ',', '.') }}</del>
         @else
-            {{ $product->price }}
+            {{ number_format($product->price, 0, ',', '.') }}
         @endif
     </h4>
 
@@ -28,21 +28,21 @@
                 <div class="form-check">
                     <input class="form-check-input" type="radio" value="{{ $productSize->id }}" name="flexRadioDefault" id="size-{{ $productSize->id }}">
                     <label class="form-check-label" for="size-{{ $productSize->id }}">
-                        {{ $productSize->name }} <span>+ Rp.{{ $productSize->price }}</span>
+                        {{ $productSize->name }} <span>+ Rp. {{ number_format($productSize->price, 0, ',', '.') }}</span>
                     </label>
                 </div>
             @endforeach
         </div>
     @endif
 
-    @if ($product->productSizes()->exists())
+    @if ($product->productOptions()->exists())
         <div class="details_extra_item">
             <h5>pilih opsi <span>(opsional)</span></h5>
             @foreach ($product->productOptions as $productOption)
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="{{ $productOption->id }}" id="option-{{ $productOption->id }}">
                     <label class="form-check-label" for="option-{{ $productOption->id }}">
-                        {{ $productOption->name }} <span>+ Rp.{{ $productOption->price }}</span>
+                        {{ $productOption->name }} <span>+ Rp. {{ number_format($productOption->price, 0, ',', '.') }}</span>
                     </label>
                 </div>
             @endforeach
