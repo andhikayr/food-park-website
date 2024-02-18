@@ -23,14 +23,14 @@
                                 <div class="col-md-6">
                                     <label for="name" class="mb-3">Varian Ukuran Produk</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        maxlength="255">
+                                        maxlength="255" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="price" class="mb-3">Harga</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="inputGroupPrepend">Rp.</span>
                                         <input type="text" name="price" id="price" class="form-control"
-                                            maxlength="15" value="0">
+                                            maxlength="15" value="0" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -93,14 +93,14 @@
                                 <div class="col-md-6">
                                     <label for="name" class="mb-3">Opsi Produk</label>
                                     <input type="text" name="name" id="name" class="form-control"
-                                        maxlength="255">
+                                        maxlength="255" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="price" class="mb-3">Harga</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="inputGroupPrepend">Rp.</span>
                                         <input type="text" name="price" id="price-2" class="form-control"
-                                            maxlength="15" value="0">
+                                            maxlength="15" value="0" required>
                                     </div>
                                 </div>
                                 <div class="col-12">
