@@ -98,25 +98,6 @@
             height: 400
         });
 
-        // function penambah titik pada kolom harga
-        function formatRupiah(angka) {
-            var rupiah = '';
-            var angkarev = angka.toString().split('').reverse().join('');
-            for (var i = 0; i < angkarev.length; i++)
-                if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
-            return rupiah.split('', rupiah.length - 1).reverse().join('');
-        }
-
-        $('#price').keyup(function() {
-            var num = $(this).val().replace(/\./g, '');
-            $(this).val(formatRupiah(num));
-        });
-
-        $('#offer_price').keyup(function() {
-            var num = $(this).val().replace(/\./g, '');
-            $(this).val(formatRupiah(num));
-        });
-
         // select2
         $('.single-select').select2({
             theme: 'bootstrap4',
