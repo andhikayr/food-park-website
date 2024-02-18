@@ -59,10 +59,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::resource('product-size', ProductSizeController::class);
         /* Opsi Tambahan Produk */
         Route::resource('product-option', ProductOptionController::class);
-
-        // Pengaturan umum
-        Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
-        Route::put('general-setting', [SettingController::class, 'updateGeneralSetting'])->name('setting.updateGeneralSetting');
     });
 });
 
