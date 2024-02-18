@@ -64,8 +64,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
 // Frontend index route
 Route::get('/', [FrontendController::class, 'index'])->name('index');
-// Frontend shoow detail product route
+// Frontend tampilkan detil produk route
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
+// Frontend modal route
+Route::get('/load-product-modal/{productId}', [FrontendController::class, 'loadProductModal'])->name('load-product-modal');
 
 // Frontend user dashboard route
 Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(FrontendDashboardController::class)->group(function () {
