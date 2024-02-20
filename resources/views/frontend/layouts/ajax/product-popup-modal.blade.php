@@ -76,7 +76,7 @@
             </div>
         </div>
         <ul class="details_button_area d-flex flex-wrap">
-            <li><button type="submit" class="common_btn">tambah ke keranjang</button></li>
+            <li><button type="submit" class="common_btn modal_cart_button">tambah ke keranjang</button></li>
         </ul>
     </div>
 </form>
@@ -169,12 +169,20 @@
                 method: 'POST',
                 url: '{{ route("add-to-cart") }}',
                 data: formData,
+                beforeSend: function () {
+                    $('.modal_cart_button').attr('disabled', true);
+                    $('.modal_cart_button').html('<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span> Tunggu sebentar...');
+                },
                 success: function (response) {
                     toastr.success(response.message);
                 },
                 error: function (xhr, status, error) {
                     let errorMessage = xhr.responseJSON.message;
                     toastr.error(errorMessage);
+                },
+                complete: function () {
+                    $('.modal_cart_button').html('Tambah ke keranjang');
+                    $('.modal_cart_button').attr('disabled', false);
                 }
             });
         });
