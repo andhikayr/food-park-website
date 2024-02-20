@@ -170,10 +170,11 @@
                 url: '{{ route("add-to-cart") }}',
                 data: formData,
                 success: function (response) {
-
+                    toastr.success(response.message);
                 },
                 error: function (xhr, status, error) {
-                    console.error(error);
+                    let errorMessage = xhr.responseJSON.message;
+                    toastr.error(errorMessage);
                 }
             });
         });
