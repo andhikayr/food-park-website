@@ -154,8 +154,17 @@
         // function tambah ke keranjang
         $("#modal_add_to_cart_form").on('submit', function (e) {
             e.preventDefault();
-            let formData = $(this).serialize();
 
+            // validasi data
+            let selectedSize = $("input[name='product_size']");
+            if (selectedSize.length > 0) {
+                if ($("input[name='product_size']:checked").val() === undefined) {
+                    toastr.error('Pilih ukuran produk terlebih dahulu');
+                    return;
+                }
+            }
+
+            let formData = $(this).serialize();
             $.ajax({
                 method: 'POST',
                 url: '{{ route("add-to-cart") }}',
