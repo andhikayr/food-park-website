@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\DashboardController as FrontendDashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
@@ -62,14 +63,16 @@ Route::prefix('admin')->as('admin.')->group(function () {
     });
 });
 
-// Frontend index route
+// Frontend index
 Route::get('/', [FrontendController::class, 'index'])->name('index');
-// Frontend tampilkan detil produk route
+// Frontend tampilkan detil produk
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
-// Frontend modal route
+// Frontend modal
 Route::get('/load-product-modal/{productId}', [FrontendController::class, 'loadProductModal'])->name('load-product-modal');
+// Tambah ke keranjang
+Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 
-// Frontend user dashboard route
+// Frontend user dashboard
 Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(FrontendDashboardController::class)->group(function () {
     Route::get('/', 'index')->name('dashboard');
     Route::put('/updateDataProfile', 'updateDataProfile')->name('dashboard.updateDataProfile');
