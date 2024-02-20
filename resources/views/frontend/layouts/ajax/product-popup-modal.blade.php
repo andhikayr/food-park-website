@@ -1,66 +1,133 @@
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
-<div class="fp__cart_popup_img">
-    <img src="{{ asset('admin/uploads/product_image/' . $product->thumb_image) }}" alt="{{ $product->name }}" class="img-fluid w-100">
-</div>
-<div class="fp__cart_popup_text">
-    <a href="{{ route('product.show', $product->slug) }}" class="title">{{ $product->name }}</a>
-    <p class="rating">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-        <i class="far fa-star"></i>
-        <span>(201)</span>
-    </p>
-    <h4 class="price">
-        @if ($product->offer_price > 0)
-            Rp. {{ number_format($product->offer_price, 0, ',', '.') }}
-            <del>Rp. {{ number_format($product->price, 0, ',', '.') }}</del>
-        @else
-            {{ number_format($product->price, 0, ',', '.') }}
-        @endif
-    </h4>
-
-    @if ($product->productSizes()->exists())
-        <div class="details_size">
-            <h5>pilih ukuran</h5>
-            @foreach ($product->productSizes as $productSize)
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="{{ $productSize->id }}" name="flexRadioDefault" id="size-{{ $productSize->id }}">
-                    <label class="form-check-label" for="size-{{ $productSize->id }}">
-                        {{ $productSize->name }} <span>+ Rp. {{ number_format($productSize->price, 0, ',', '.') }}</span>
-                    </label>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    @if ($product->productOptions()->exists())
-        <div class="details_extra_item">
-            <h5>pilih opsi <span>(opsional)</span></h5>
-            @foreach ($product->productOptions as $productOption)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $productOption->id }}" id="option-{{ $productOption->id }}">
-                    <label class="form-check-label" for="option-{{ $productOption->id }}">
-                        {{ $productOption->name }} <span>+ Rp. {{ number_format($productOption->price, 0, ',', '.') }}</span>
-                    </label>
-                </div>
-            @endforeach
-        </div>
-    @endif
-
-    <div class="details_quentity">
-        <h5>select quentity</h5>
-        <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
-            <div class="quentity_btn">
-                <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
-                <input type="text" placeholder="1">
-                <button class="btn btn-success"><i class="fal fa-plus"></i></button>
-            </div>
-            <h3>$320.00</h3>
-        </div>
+<form action="#" method="POST">
+    <div class="fp__cart_popup_img">
+        <img src="{{ asset('admin/uploads/product_image/' . $product->thumb_image) }}" alt="{{ $product->name }}"
+            class="img-fluid w-100">
     </div>
-    <ul class="details_button_area d-flex flex-wrap">
-        <li><a class="common_btn" href="#">add to cart</a></li>
-    </ul>
-</div>
+    <div class="fp__cart_popup_text">
+        <a href="{{ route('product.show', $product->slug) }}" class="title">{{ $product->name }}</a>
+        <p class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <i class="far fa-star"></i>
+            <span>(201)</span>
+        </p>
+        <h4 class="price">
+            @if ($product->offer_price > 0)
+                <input type="hidden" name="base_price" value="{{ $product->offer_price }}">
+                Rp. {{ number_format($product->offer_price, 0, ',', '.') }}
+                <del>Rp. {{ number_format($product->price, 0, ',', '.') }}</del>
+            @else
+                <input type="hidden" name="base_price" value="{{ $product->price }}">
+                Rp. {{ number_format($product->price, 0, ',', '.') }}
+            @endif
+        </h4>
+
+        @if ($product->productSizes()->exists())
+            <div class="details_size">
+                <h5>pilih ukuran</h5>
+                @foreach ($product->productSizes as $productSize)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="{{ $productSize->id }}"
+                            data-price="{{ $productSize->price }}" name="product_size"
+                            id="size-{{ $productSize->id }}">
+                        <label class="form-check-label" for="size-{{ $productSize->id }}">
+                            {{ $productSize->name }} <span>+ Rp.
+                                {{ number_format($productSize->price, 0, ',', '.') }}</span>
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        @if ($product->productOptions()->exists())
+            <div class="details_extra_item">
+                <h5>pilih opsi <span>(opsional)</span></h5>
+                @foreach ($product->productOptions as $productOption)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_option[]"
+                            data-price="{{ $productOption->price }}" value="{{ $productOption->id }}"
+                            id="option-{{ $productOption->id }}">
+                        <label class="form-check-label" for="option-{{ $productOption->id }}">
+                            {{ $productOption->name }} <span>+ Rp.
+                                {{ number_format($productOption->price, 0, ',', '.') }}</span>
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        <div class="details_quentity">
+            <h5>select quentity</h5>
+            <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
+                <div class="quentity_btn">
+                    <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
+                    <input type="text" placeholder="1">
+                    <button class="btn btn-success"><i class="fal fa-plus"></i></button>
+                </div>
+                @if ($product->offer_price > 0)
+                    <h3 id="total_price">Rp. {{ number_format($product->offer_price, 0, ',', '.') }}</span></h3>
+                @else
+                    <h3 id="total_price">Rp. {{ number_format($product->price, 0, ',', '.') }}</span></h3>
+                @endif
+            </div>
+        </div>
+        <ul class="details_button_area d-flex flex-wrap">
+            <li><a class="common_btn" href="#">add to cart</a></li>
+        </ul>
+    </div>
+</form>
+
+<script>
+    // Update harga total
+    $(document).ready(function() {
+        $('input[name="product_size"]').on('change', function() {
+            updateTotalPrice();
+        });
+
+        $('input[name="product_option[]"]').on('change', function() {
+            updateTotalPrice();
+        });
+
+        function updateTotalPrice() {
+            let basePrice = parseInt($('input[name="base_price"]').val());
+            let selectedSizePrice = 0;
+            let selectedOptionsPrice = 0;
+
+            // Hitung harga dari radio button product_size
+            let selectedSize = $('input[name="product_size"]:checked');
+            if (selectedSize.length > 0) {
+                selectedSizePrice = parseInt(selectedSize.data("price"));
+            }
+
+            // Hitung harga dari checkbox product_size
+            let selectedOptions = $('input[name="product_option[]"]:checked');
+            $(selectedOptions).each(function(item) {
+                selectedOptionsPrice += parseInt($(this).data("price"));
+            });
+
+            let totalPrice = basePrice + selectedSizePrice + selectedOptionsPrice;
+            totalPrice = formatRupiah(totalPrice.toString());
+            $('#total_price').text("Rp. " + totalPrice);
+        }
+
+        // format rupiah
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    });
+</script>
