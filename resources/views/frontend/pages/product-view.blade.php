@@ -48,10 +48,10 @@
                         </p>
                         <h3 class="price">
                             @if ($product->offer_price > 0)
-                                Rp.{{ $product->offer_price }}
-                                <del>Rp.{{ $product->price }} </del>
+                                Rp. {{ number_format($product->offer_price, 0, ',', '.') }}
+                                <del>Rp. {{ number_format($product->price, 0, ',', '.') }} </del>
                             @else
-                                {{ $product->price }}
+                                Rp. {{ number_format($product->price, 0, ',', '.') }}
                             @endif
                         </h3>
                         <p class="short_description">{!! $product->short_description !!}</p>
@@ -64,7 +64,7 @@
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="large"
                                             checked>
                                         <label class="form-check-label" for="large">
-                                            {{ $productSize->name }} <span>+ Rp.{{ $productSize->price }}</span>
+                                            {{ $productSize->name }} <span>+ Rp. {{ number_format($productSize->price, 0, ',', '.') }}</span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -78,7 +78,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="option-{{ $productOption->id }}">
                                         <label class="form-check-label" for="option-{{ $productOption->id }}">
-                                            {{ $productOption->name }} <span>+ Rp.{{ $productOption->price }}</span>
+                                            {{ $productOption->name }} <span>+ Rp. {{ number_format($productOption->price, 0, ',', '.') }}</span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -86,7 +86,7 @@
                         @endif
 
                         <div class="details_quentity">
-                            <h5>select quentity</h5>
+                            <h5>pilih jumlah</h5>
                             <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
                                 <div class="quentity_btn">
                                     <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <ul class="details_button_area d-flex flex-wrap">
-                            <li><a class="common_btn" href="#">add to cart</a></li>
+                            <li><a class="common_btn" href="#">tambah ke keranjang</a></li>
                             <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
                         </ul>
                     </div>
