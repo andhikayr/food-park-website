@@ -13,7 +13,8 @@
                 $('#cartModal').modal('show');
             },
             error: function(xhr, status, error) {
-                console.error(error);
+                let errorMessage = xhr.responseJSON.message;
+                toastr.error(errorMessage);
             },
             complete: function() {
                 $('.overlay').removeClass('active');
@@ -40,13 +41,10 @@
     }
 
     /** Update keranjang di sidebar **/
-    function updateSidebarCart() {
+    function updateSidebarCart(callback = null) {
         $.ajax({
             method: 'GET',
             url: '{{ route('get-cart-products') }}',
-            beforeSend: function() {
-
-            },
             success: function(response) {
                 $('.cart_contents').html(response);
                 let cartTotal = $('#cart_total').val();
@@ -54,12 +52,39 @@
                 totalPrice = formatRupiah(cartTotal.toString());
                 $('.cart_subtotal').text("Rp. " + totalPrice);
                 $('.cart_count').text(cartCount);
+
+                if (callback && typeof callback === 'function') {
+                    callback();
+                }
             },
             error: function(xhr, status, error) {
-                console.error(error);
-            },
-            complete: function() {
+                let errorMessage = xhr.responseJSON.message;
+                toastr.error(errorMessage);
+            }
+        });
+    }
 
+    /** Hapus produk dari keranjang di sidebar **/
+    function removeProductFromSidebar($rowId) {
+        $.ajax({
+            metod: 'GET',
+            url: '{{ route("cart-product-remove", ":rowId") }}'.replace(":rowId", $rowId),
+            beforeSend: function () {
+                $('.overlay-container').removeClass('d-none');
+                $('.overlay').addClass('active');
+            },
+            success: function (response) {
+                if (response.status === 'success') {
+                    updateSidebarCart(function () {
+                        toastr.success(response.message);
+                        $('.overlay').removeClass('active');
+                        $('.overlay-container').addClass('d-none');
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                let errorMessage = xhr.responseJSON.message;
+                toastr.error(errorMessage);
             }
         });
     }

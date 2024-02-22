@@ -17,6 +17,6 @@
             @endforeach
             <p class="price">Rp. {{ number_format($cartProduct->price, 0, ',', '.') }}</p>
         </div>
-        <span class="del_icon"><i class="fal fa-times"></i></span>
+        <span class="del_icon" onclick="removeProductFromSidebar('{{ $cartProduct->rowId }}')"><i class="fal fa-times"></i></span>
     </li>
 @endforeach

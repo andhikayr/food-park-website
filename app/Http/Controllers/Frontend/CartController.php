@@ -60,4 +60,15 @@ class CartController extends Controller
     {
         return view('frontend.layouts.ajax.sidebar-cart-item')->render();
     }
+
+    public function cartProductRemove($rowId)
+    {
+        try {
+            Cart::remove($rowId);
+
+            return response(['status' => 'success', 'message' => 'Produk berhasil dihapus dari keranjang'], 200);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => 'Ada sesuatu yang salah'], 500);
+        }
+    }
 }
