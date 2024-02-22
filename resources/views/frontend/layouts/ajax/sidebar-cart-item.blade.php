@@ -10,9 +10,9 @@
                 href="{{ route('product.show', $cartProduct->options->product_info['slug']) }}">{{ $cartProduct->name }}
             </a>
             <p class="size">jumlah : {{ $cartProduct->qty }}</p>
-            <p class="size">{{ @$cartProduct->options->product_size['name'] }}</p>
+            <p class="size">{{ @$cartProduct->options->product_size['name'] }} {{ $cartProduct->options->product_size['price'] ? '(Rp.'. number_format(@$cartProduct->options->product_size['price'], 0, ',', '.') . ')' : '' }}</p>
             @foreach ($cartProduct->options->product_options as $cartProductOption)
-                <span class="extra">{{ $cartProductOption['name'] }}</span>
+                <span class="extra">{{ $cartProductOption['name'] }} (Rp. {{ number_format($cartProductOption['price'], 0, ',', '.') }})</span>
             @endforeach
             <p class="price">Rp. {{ number_format($cartProduct->price, 0, ',', '.') }}</p>
         </div>
