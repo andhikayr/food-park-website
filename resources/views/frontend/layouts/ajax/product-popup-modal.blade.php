@@ -174,6 +174,7 @@
                     $('.modal_cart_button').html('<span class="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span> Tunggu sebentar...');
                 },
                 success: function (response) {
+                    updateSidebarCart();
                     toastr.success(response.message);
                 },
                 error: function (xhr, status, error) {

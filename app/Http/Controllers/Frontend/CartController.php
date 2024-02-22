@@ -55,4 +55,9 @@ class CartController extends Controller
             return response(['status' => 'error', 'message' => 'Ada sesuatu yang salah'], 500);
         }
     }
+
+    public function getCartProducts()
+    {
+        return view('frontend.layouts.ajax.sidebar-cart-item')->render();
+    }
 }
