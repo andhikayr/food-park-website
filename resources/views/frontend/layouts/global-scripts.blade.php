@@ -50,8 +50,10 @@
             success: function(response) {
                 $('.cart_contents').html(response);
                 let cartTotal = $('#cart_total').val();
+                let cartCount = $('#cart_product_count').val();
                 totalPrice = formatRupiah(cartTotal.toString());
                 $('.cart_subtotal').text("Rp. " + totalPrice);
+                $('.cart_count').text(cartCount);
             },
             error: function(xhr, status, error) {
                 console.error(error);
