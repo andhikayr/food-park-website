@@ -92,6 +92,7 @@
             updateTotalPrice();
         });
 
+        // Tambah dan kurangi jumlah produk yang dibeli
         $('.increment').on('click', function (e) {
             e.preventDefault();
             let quantity = $('#quantity');
@@ -110,6 +111,7 @@
             }
         });
 
+        // Update harga total
         function updateTotalPrice() {
             let basePrice = parseInt($('input[name="base_price"]').val());
             let selectedSizePrice = 0;

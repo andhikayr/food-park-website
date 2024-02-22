@@ -7,8 +7,8 @@
 @section('content')
     @include('frontend.components.breadcrumb')
     <!--=============================
-            MENU DETAILS START
-        ==============================-->
+                    MENU DETAILS START
+                ==============================-->
     <section class="fp__menu_details mt_115 xs_mt_85 mb_95 xs_mb_65">
         <div class="container">
             <div class="row">
@@ -56,46 +56,53 @@
                         </h3>
                         <p class="short_description">{!! $product->short_description !!}</p>
 
-                        @if ($product->productSizes()->exists())
-                            <div class="details_size">
-                                <h5>pilih ukuran</h5>
-                                @foreach ($product->productSizes as $productSize)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="large"
-                                            checked>
-                                        <label class="form-check-label" for="large">
-                                            {{ $productSize->name }} <span>+ Rp. {{ number_format($productSize->price, 0, ',', '.') }}</span>
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-
-                        @if ($product->productSizes()->exists())
-                            <div class="details_extra_item">
-                                <h5>Pilih opsi <span>(opsional)</span></h5>
-                                @foreach ($product->productOptions as $productOption)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="option-{{ $productOption->id }}">
-                                        <label class="form-check-label" for="option-{{ $productOption->id }}">
-                                            {{ $productOption->name }} <span>+ Rp. {{ number_format($productOption->price, 0, ',', '.') }}</span>
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-
-                        <div class="details_quentity">
-                            <h5>pilih jumlah</h5>
-                            <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
-                                <div class="quentity_btn">
-                                    <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
-                                    <input type="text" placeholder="1">
-                                    <button class="btn btn-success"><i class="fal fa-plus"></i></button>
+                        <form action="">
+                            @csrf
+                            <input type="hidden" name="base_price" class="v_base_price" value="{{ $product->offer_price > 0 ? $product->offer_price : $product->price }}">
+                            @if ($product->productSizes()->exists())
+                                <div class="details_size">
+                                    <h5>pilih ukuran</h5>
+                                    @foreach ($product->productSizes as $productSize)
+                                        <div class="form-check">
+                                            <input class="form-check-input v_product_size" type="radio"
+                                                name="flexRadioDefault" id="size-{{ $productSize->id }}" data-price="{{ $productSize->price }}">
+                                            <label class="form-check-label" for="size-{{ $productSize->id }}">
+                                                {{ $productSize->name }} <span>+ Rp.
+                                                    {{ number_format($productSize->price, 0, ',', '.') }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <h3>$320.00</h3>
+                            @endif
+
+                            @if ($product->productOptions()->exists())
+                                <div class="details_extra_item">
+                                    <h5>Pilih opsi <span>(opsional)</span></h5>
+                                    @foreach ($product->productOptions as $productOption)
+                                        <div class="form-check">
+                                            <input class="form-check-input v_product_option" type="checkbox" value="" id="option-{{ $productOption->id }}" data-price="{{ $productOption->price }}">
+                                            <label class="form-check-label" for="option-{{ $productOption->id }}">
+                                                {{ $productOption->name }} <span>+ Rp.
+                                                    {{ number_format($productOption->price, 0, ',', '.') }}</span>
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <div class="details_quentity">
+                                <h5>pilih jumlah</h5>
+                                <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
+                                    <div class="quentity_btn">
+                                        <button class="btn btn-danger v_decrement"><i class="fal fa-minus"></i></button>
+                                        <input type="text" placeholder="1" value="1" readonly id="v_quantity" name="qty">
+                                        <button class="btn btn-success v_increment"><i class="fal fa-plus"></i></button>
+                                    </div>
+                                    <h3 id="v_total_price">{{ $product->offer_price > 0 ? 'Rp. '. number_format($product->offer_price, 0, ',', '.') : 'Rp. ' . number_format($product->price, 0, ',', '.') }}</h3>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
                         <ul class="details_button_area d-flex flex-wrap">
                             <li><a class="common_btn" href="#">tambah ke keranjang</a></li>
                             <li><a class="wishlist" href="#"><i class="far fa-heart"></i></a></li>
@@ -241,45 +248,47 @@
             </div>
             @if (count($relatedProducts) > 0)
                 <div class="fp__related_menu mt_90 xs_mt_60">
-                <h2>item terkait produk ini</h2>
-                <div class="row related_product_slider">
-                    @foreach ($relatedProducts as $relatedProduct)
-                        <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-                        <div class="fp__menu_item">
-                            <div class="fp__menu_item_img">
-                                <img src="{{ asset('admin/uploads/product_image/' . $relatedProduct->thumb_image) }}" alt="menu" class="img-fluid w-100">
-                                <a class="category" href="#">{{ @$relatedProduct->category->name }}</a>
+                    <h2>item terkait produk ini</h2>
+                    <div class="row related_product_slider">
+                        @foreach ($relatedProducts as $relatedProduct)
+                            <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
+                                <div class="fp__menu_item">
+                                    <div class="fp__menu_item_img">
+                                        <img src="{{ asset('admin/uploads/product_image/' . $relatedProduct->thumb_image) }}"
+                                            alt="menu" class="img-fluid w-100">
+                                        <a class="category" href="#">{{ @$relatedProduct->category->name }}</a>
+                                    </div>
+                                    <div class="fp__menu_item_text">
+                                        <p class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            <span>74</span>
+                                        </p>
+                                        <a class="title"
+                                            href="{{ route('product.show', $relatedProduct->slug) }}">{!! $relatedProduct->name !!}</a>
+                                        <h5 class="price">
+                                            @if ($relatedProduct->offer_price > 0)
+                                                Rp.{{ $relatedProduct->offer_price }}
+                                                <del>Rp.{{ $relatedProduct->price }}</del>
+                                            @else
+                                                Rp.{{ $relatedProduct->price }}
+                                            @endif
+                                        </h5>
+                                        <ul class="d-flex flex-wrap justify-content-center">
+                                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#cartModal"><i
+                                                        class="fas fa-shopping-basket"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                            <li><a href="#"><i class="far fa-eye"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="fp__menu_item_text">
-                                <p class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
-                                    <span>74</span>
-                                </p>
-                                <a class="title" href="{{ route('product.show', $relatedProduct->slug) }}">{!! $relatedProduct->name !!}</a>
-                                <h5 class="price">
-                                    @if ($relatedProduct->offer_price > 0)
-                                        Rp.{{ $relatedProduct->offer_price }}
-                                        <del>Rp.{{ $relatedProduct->price }}</del>
-                                    @else
-                                        Rp.{{ $relatedProduct->price }}
-                                    @endif
-                                </h5>
-                                <ul class="d-flex flex-wrap justify-content-center">
-                                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#cartModal"><i
-                                                class="fas fa-shopping-basket"></i></a></li>
-                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
-            </div>
             @endif
         </div>
     </section>
@@ -371,6 +380,64 @@
     <!-- CART POPUT END -->
 
     <!--=============================
-            MENU DETAILS END
-        ==============================-->
+                    MENU DETAILS END
+                ==============================-->
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.v_product_size').on('change', function() {
+                v_updateTotalPrice();
+            });
+
+            $('.v_product_option').on('change', function() {
+                v_updateTotalPrice();
+            });
+
+            // Tambah dan kurangi jumlah produk yang dibeli
+            $('.v_increment').on('click', function (e) {
+                e.preventDefault();
+                let quantity = $('#v_quantity');
+                let currentQuantity = parseInt(quantity.val());
+                quantity.val(currentQuantity + 1);
+                v_updateTotalPrice();
+            });
+
+            $('.v_decrement').on('click', function (e) {
+                e.preventDefault();
+                let quantity = $('#v_quantity');
+                let currentQuantity = parseInt(quantity.val());
+                if (currentQuantity > 1) {
+                    quantity.val(currentQuantity - 1);
+                    v_updateTotalPrice();
+                }
+            });
+
+            // Update harga total
+            function v_updateTotalPrice() {
+                let basePrice = parseInt($('.v_base_price').val());
+                let selectedSizePrice = 0;
+                let selectedOptionsPrice = 0;
+                let quantity = parseInt($('#v_quantity').val());
+
+                // Hitung harga dari radio button product_size
+                let selectedSize = $('.v_product_size:checked');
+                if (selectedSize.length > 0) {
+                    selectedSizePrice = parseInt(selectedSize.data("price"));
+                }
+
+                // Hitung harga dari checkbox product_size
+                let selectedOptions = $('.v_product_option:checked');
+                $(selectedOptions).each(function(item) {
+                    selectedOptionsPrice += parseInt($(this).data("price"));
+                });
+
+                // Hitung harga total
+                let totalPrice = (basePrice + selectedSizePrice + selectedOptionsPrice) * quantity;
+                totalPrice = formatRupiah(totalPrice.toString());
+                $('#v_total_price').text("Rp. " + totalPrice);
+            }
+        });
+    </script>
+@endpush
