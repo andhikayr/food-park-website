@@ -92,31 +92,18 @@
                     <div class="menu_cart_text">
                         <a class="title" href="{{ route('product.show', $cartProduct->options->product_info['slug']) }}">{{ $cartProduct->name }} </a>
                         <p class="size">jumlah : {{ $cartProduct->qty }}</p>
-                        <p class="size">{{ @$cartProduct->options->product_size['name'] }}</p>
+                        <p class="size">{{ @$cartProduct->options->product_size['name'] }} {{ $cartProduct->options->product_size['price'] ? '(Rp.'. number_format(@$cartProduct->options->product_size['price'], 0, ',', '.') . ')' : '' }}</p>
                         @foreach ($cartProduct->options->product_options as $cartProductOption)
-                            <span class="extra">{{ $cartProductOption['name'] }}</span>
+                            <span class="extra">{{ $cartProductOption['name'] }} (Rp. {{ number_format($cartProductOption['price'], 0, ',', '.') }})</span>
                         @endforeach
                         <p class="price">Rp. {{ number_format($cartProduct->price, 0, ',', '.') }}</p>
                     </div>
                     <span class="del_icon"><i class="fal fa-times"></i></span>
                 </li>
             @endforeach
-            {{-- <li>
-                <div class="menu_cart_img">
-                    <img src="{{ asset('frontend/images/menu8.png') }}" alt="menu" class="img-fluid w-100">
-                </div>
-                <div class="menu_cart_text">
-                    <a class="title" href="#">Hyderabadi Biryani </a>
-                    <p class="size">small</p>
-                    <span class="extra">coca-cola</span>
-                    <span class="extra">7up</span>
-                    <p class="price">$99.00 <del>$110.00</del></p>
-                </div>
-                <span class="del_icon"><i class="fal fa-times"></i></span>
-            </li> --}}
         </ul>
-        <p class="subtotal">sub total <span>$1220.00</span></p>
-        <a class="cart_view" href="cart_view.html"> view cart</a>
+        <p class="subtotal">sub total <span class="cart_subtotal">Rp. {{ number_format(cartTotal(), 0, ',', '.') }}</span></p>
+        <a class="cart_view" href="cart_view.html"> lihat keranjang</a>
         <a class="checkout" href="check_out.html">checkout</a>
     </div>
 </div>
