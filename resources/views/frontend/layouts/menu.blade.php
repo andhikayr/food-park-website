@@ -103,7 +103,7 @@
             @endforeach
         </ul>
         <p class="subtotal">sub total <span class="cart_subtotal">Rp. {{ number_format(cartTotal(), 0, ',', '.') }}</span></p>
-        <a class="cart_view" href="cart_view.html"> lihat keranjang</a>
+        <a class="cart_view" href="{{ route('cart.index') }}"> lihat keranjang</a>
         <a class="checkout" href="check_out.html">checkout</a>
     </div>
 </div>

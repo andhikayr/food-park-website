@@ -74,6 +74,8 @@ Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-c
 Route::get('get-cart-products', [CartController::class, 'getCartProducts'])->name('get-cart-products');
 // Hapus dari keranjang produk di sidebar
 Route::get('cart-product-remove/{rowId}', [CartController::class, 'cartProductRemove'])->name('cart-product-remove');
+// Halaman keranjang produk
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 // Frontend user dashboard
 Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(FrontendDashboardController::class)->group(function () {

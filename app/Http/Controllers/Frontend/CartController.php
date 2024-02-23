@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Cart;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function index() : View
+    {
+        return view('frontend.pages.cart-view');
+    }
+
     public function addToCart(Request $request)
     {
         try {
