@@ -4,9 +4,8 @@
     Keranjang Produk
 @endsection
 
-@include('frontend.components.breadcrumb')
-
 @section('content')
+    @include('frontend.components.breadcrumb')
     <!--============================
         CART VIEW START
     ==============================-->
