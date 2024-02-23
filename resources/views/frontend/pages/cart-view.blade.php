@@ -114,7 +114,11 @@
             });
 
             $('.decrement').on('click', function () {
-
+                let inputField = $(this).siblings(".quantity");
+                let currentValue = parseInt(inputField.val());
+                if (inputField.val() > 1) {
+                    inputField.val(currentValue - 1);
+                }
             });
         });
     </script>
