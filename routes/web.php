@@ -76,6 +76,7 @@ Route::get('get-cart-products', [CartController::class, 'getCartProducts'])->nam
 Route::get('cart-product-remove/{rowId}', [CartController::class, 'cartProductRemove'])->name('cart-product-remove');
 // Halaman keranjang produk
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
 
 // Frontend user dashboard
 Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(FrontendDashboardController::class)->group(function () {

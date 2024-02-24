@@ -62,7 +62,7 @@
                                             <td class="fp__pro_select">
                                                 <div class="quentity_btn">
                                                     <button class="btn btn-danger decrement"><i class="fal fa-minus"></i></button>
-                                                    <input type="text" value="{{ $product->qty }}" class="quantity" readonly>
+                                                    <input type="text" data-id="{{ $product->rowId }}" value="{{ $product->qty }}" class="quantity" readonly>
                                                     <button class="btn btn-success increment"><i class="fal fa-plus"></i></button>
                                                 </div>
                                             </td>
@@ -110,16 +110,43 @@
             $('.increment').on('click', function () {
                 let inputField = $(this).siblings(".quantity");
                 let currentValue = parseInt(inputField.val());
+                let rowId = inputField.data("id");
                 inputField.val(currentValue + 1);
+                cartQtyUpdate(rowId, inputField.val());
             });
 
             $('.decrement').on('click', function () {
                 let inputField = $(this).siblings(".quantity");
                 let currentValue = parseInt(inputField.val());
+                let rowId = inputField.data("id");
                 if (inputField.val() > 1) {
                     inputField.val(currentValue - 1);
+                    cartQtyUpdate(rowId, inputField.val());
                 }
             });
+
+            function cartQtyUpdate(rowId, qty) {
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ route("cart.quantity-update") }}',
+                    data: {
+                        'rowId': rowId,
+                        'qty': qty
+                    },
+                    beforeSend: function () {
+
+                    },
+                    success: function (response) {
+
+                    },
+                    error: function (xhr, status, error) {
+
+                    },
+                    complete: function () {
+
+                    }
+                });
+            }
         });
     </script>
 @endpush
