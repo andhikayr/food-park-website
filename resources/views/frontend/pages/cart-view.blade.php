@@ -39,7 +39,7 @@
                                         </th>
 
                                         <th class="fp__pro_icon">
-                                            <a class="clear_all" href="#">bersihkan keranjang</a>
+                                            <a class="clear_all" href="{{ route('cart.destroy') }}">bersihkan keranjang</a>
                                         </th>
                                     </tr>
                                     @if (count(Cart::content()) > 0)

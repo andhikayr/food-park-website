@@ -8,6 +8,7 @@ use Cart;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -89,7 +90,13 @@ class CartController extends Controller
             logger($e);
             return response(['status' => 'error', 'message' => 'Ada sesuatu yang salah'], 500);
         }
+    }
 
+    public function cartDestroy()
+    {
+        Cart::destroy();
 
+        Alert::success('Sukses', 'Keranjang anda telah berhasil dihapus');
+        return back();
     }
 }
