@@ -1,6 +1,7 @@
 <input type="hidden" value="{{ cartTotal() }}" id="cart_total">
 <input type="hidden" value="{{ count(Cart::content()) }}" id="cart_product_count">
-@foreach (Cart::content() as $cartProduct)
+@if (count(Cart::content()) > 0)
+    @foreach (Cart::content() as $cartProduct)
     <li>
         <div class="menu_cart_img">
             <img src="{{ asset('admin/uploads/product_image/' . $cartProduct->options->product_info['image']) }}"
@@ -19,4 +20,7 @@
         </div>
         <span class="del_icon" onclick="removeProductFromSidebar('{{ $cartProduct->rowId }}')"><i class="fal fa-times"></i></span>
     </li>
-@endforeach
+    @endforeach
+@else
+    <p class="fw-bold">Tidak ada produk apapun disini</p>
+@endif
