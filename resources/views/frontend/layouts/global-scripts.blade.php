@@ -77,7 +77,7 @@
     /** Hapus produk dari keranjang di sidebar **/
     function removeProductFromSidebar($rowId) {
         $.ajax({
-            metod: 'GET',
+            method: 'GET',
             url: '{{ route("cart-product-remove", ":rowId") }}'.replace(":rowId", $rowId),
             beforeSend: function () {
                 showLoader();
