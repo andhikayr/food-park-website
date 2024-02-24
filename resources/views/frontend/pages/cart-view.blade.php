@@ -49,7 +49,7 @@
 
                                             <td class="fp__pro_name">
                                                 <a href="{{ route('product.show', $product->options->product_info['slug']) }}">{{ $product->name }}</a>
-                                                <span>{{ $product->options->product_size['name'] }} (Rp. {{ number_format($product->options->product_size['price'], 0, ',', '.') }})</span>
+                                                <span>{{ @$product->options->product_size['name'] }} {{ @$product->options->product_size['price'] ? '(Rp. ' . number_format($product->options->product_size['price'], 0, ',', '.') . ')' : '' }}</span>
                                                 @foreach ($product->options->product_options as $option)
                                                     <p>{{ $option['name'] }} (Rp. {{ number_format($option['price'], 0, ',', '.') }})</p>
                                                 @endforeach
