@@ -65,15 +65,20 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
 // Frontend index
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+
 // Frontend tampilkan detil produk
 Route::get('/product/{slug}', [FrontendController::class, 'showProduct'])->name('product.show');
+
 // Frontend modal
 Route::get('/load-product-modal/{productId}', [FrontendController::class, 'loadProductModal'])->name('load-product-modal');
+
 // Tambah ke keranjang produk di sidebar
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('get-cart-products', [CartController::class, 'getCartProducts'])->name('get-cart-products');
+
 // Hapus dari keranjang produk di sidebar
 Route::get('cart-product-remove/{rowId}', [CartController::class, 'cartProductRemove'])->name('cart-product-remove');
+
 // Halaman keranjang produk
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
