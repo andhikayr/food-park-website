@@ -42,7 +42,8 @@
                                             <a class="clear_all" href="#">bersihkan keranjang</a>
                                         </th>
                                     </tr>
-                                    @foreach (Cart::content() as $product)
+                                    @if (count(Cart::content()) > 0)
+                                        @foreach (Cart::content() as $product)
                                         <tr>
                                             <td class="fp__pro_img"><img src="{{ asset('admin/uploads/product_image/' . $product->options->product_info['image']) }}" alt="product" class="img-fluid w-100">
                                             </td>
@@ -76,6 +77,11 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    @else
+                                        <tr>
+                                            <td class="border-0" style="background-color: white">Tidak ada produk apapun disini</td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -175,15 +181,15 @@
                         showLoader();
                     },
                     success: function (response) {
-
+                        updateSidebarCart(function () {
+                            toastr.success(response.message);
+                            hideLoader();
+                        });
                     },
                     error: function (xhr, status, error) {
                         let errorMessage = xhr.responseJSON.message;
                         hideLoader();
                         toastr.error(errorMessage);
-                    },
-                    complete: function () {
-                        hideLoader();
                     }
                 });
             }
