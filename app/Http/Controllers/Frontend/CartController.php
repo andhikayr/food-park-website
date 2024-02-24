@@ -84,7 +84,7 @@ class CartController extends Controller
         try {
             Cart::update($request->rowId, $request->qty);
 
-            return response(['status' =>'success', 'message' => 'Keranjang berhasil diperbarui'], 200);
+            return response(['product_total' => productTotal($request->rowId)], 200);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => 'Ada sesuatu yang salah'], 500);
