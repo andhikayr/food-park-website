@@ -25,7 +25,7 @@
                             <div class="col-12">
                                 <label for="name" class="form-label">Nama Produk *</label>
                                 <input type="text" class="form-control" id="name" name="name" required
-                                    maxlength="255">
+                                    maxlength="255" value="{{ old('name') }}">
                             </div>
                             <div class="col-12">
                                 <label for="category_id">Kategori Produk *</label>
@@ -51,6 +51,11 @@
                                     <input type="text" class="form-control" id="offer_price" name="offer_price"
                                         maxlength="15" value="{{ old('offer_price') }}">
                                 </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="quantity" class="form-label">Jumlah *</label>
+                                <input type="text" class="form-control" id="quantity" name="quantity"
+                                    required maxlength="11" value="{{ old('quantity') }}">
                             </div>
                             <div class="col-12">
                                 <label for="short_description" class="form-label">Deskripsi Singkat *</label>

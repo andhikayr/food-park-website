@@ -21,11 +21,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Thumbnail Produk</th>
-                            <th>Nama Produk</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
                             <th>Harga</th>
                             <th>Harga Diskon</th>
-                            <th>Tampilkan di Homepage ?</th>
+                            <th>Jumlah</th>
+                            <th>Tampilkan di Home ?</th>
                             <th>Status</th>
                             <th>Opsi</th>
                         </tr>
@@ -35,7 +36,7 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td><img src="{{ asset('admin/uploads/product_image/' . $item->thumb_image) }}"
-                                        width="120px" height="120px"></td>
+                                        width="80px" height="80px"></td>
                                 <td>{{ $item->name }}</td>
                                 <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                 @if ($item->offer_price)
@@ -43,7 +44,7 @@
                                 @else
                                     <td>Tidak ada</td>
                                 @endif
-
+                                <td>{{ $item->quantity }}</td>
                                 @if ($item->show_at_home === 1)
                                     <td><span class="badge rounded-pill bg-primary">Ya</span></td>
                                 @else
@@ -78,11 +79,12 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
-                            <th>Thumbnail Produk</th>
-                            <th>Nama Produk</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
                             <th>Harga</th>
                             <th>Harga Diskon</th>
-                            <th>Tampilkan di Homepage ?</th>
+                            <th>Jumlah</th>
+                            <th>Tampilkan di Home ?</th>
                             <th>Status</th>
                             <th>Opsi</th>
                         </tr>

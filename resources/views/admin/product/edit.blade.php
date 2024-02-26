@@ -54,6 +54,11 @@
                                 </div>
                             </div>
                             <div class="col-12">
+                                <label for="quantity" class="form-label">Jumlah *</label>
+                                <input type="text" class="form-control" id="quantity" name="quantity"
+                                    required maxlength="11" value="{{ $product->quantity }}">
+                            </div>
+                            <div class="col-12">
                                 <label for="short_description" class="form-label">Deskripsi Singkat *</label>
                                 <input type="text" class="form-control" id="short_description" name="short_description"
                                     required maxlength="255" value="{{ $product->short_description }}">
