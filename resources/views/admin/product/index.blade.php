@@ -37,9 +37,9 @@
                                 <td><img src="{{ asset('admin/uploads/product_image/' . $item->thumb_image) }}"
                                         width="120px" height="120px"></td>
                                 <td>{{ $item->name }}</td>
-                                <td>Rp. {{ $item->price }}</td>
+                                <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                 @if ($item->offer_price)
-                                    <td>Rp. {{ $item->offer_price }}</td>
+                                    <td>Rp. {{ number_format($item->offer_price, 0, ',', '.') }}</td>
                                 @else
                                     <td>Tidak ada</td>
                                 @endif
