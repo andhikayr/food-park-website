@@ -41,7 +41,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text" id="inputGroupPrepend">Rp.</span>
                                     <input type="text" class="form-control" id="price" name="price" required
-                                        maxlength="15">
+                                        maxlength="15" value="{{ old('price') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -49,18 +49,18 @@
                                 <div class="input-group">
                                     <span class="input-group-text" id="inputGroupPrepend">Rp.</span>
                                     <input type="text" class="form-control" id="offer_price" name="offer_price"
-                                        maxlength="15">
+                                        maxlength="15" value="{{ old('offer_price') }}">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <label for="short_description" class="form-label">Deskripsi Singkat *</label>
                                 <input type="text" class="form-control" id="short_description" name="short_description"
-                                    required maxlength="255">
+                                    required maxlength="255" value="{{ old('short_description') }}">
                             </div>
                             <!-- Create the editor container -->
                             <div class="col-12">
                                 <label for="long_description" class="form-label">Deskripsi Lengkap</label>
-                                <textarea name="long_description" id="summernote"></textarea>
+                                <textarea name="long_description" id="summernote"> {{ old('long_description') }}</textarea>
                             </div>
                             <div class="col-md-6">
                                 <label for="show_at_home" class="form-label">Tampilkan di Homepage</label>
