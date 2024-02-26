@@ -18,7 +18,9 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
+
         <li class="menu-label">Pengaturan Menu Homepage</li>
+
         <li>
             <a href="{{ route('admin.slider.index') }}">
                 <div class="parent-icon"><i class='fas fa-list'></i>
@@ -26,6 +28,7 @@
                 <div class="menu-title">Slider Produk</div>
             </a>
         </li>
+
         <li>
             <a href="{{ route('admin.why-choose-us.index') }}">
                 <div class="parent-icon"><i class='fas fa-list'></i>
@@ -33,6 +36,7 @@
                 <div class="menu-title">"Mengapa Memilih Kita"</div>
             </a>
         </li>
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='fas fa-utensils'></i>
@@ -43,6 +47,18 @@
                 <li> <a href="{{ route('admin.product-category.index') }}"><i class="bx bx-right-arrow-alt"></i>Kategori Produk</a>
                 </li>
                 <li> <a href="{{ route('admin.product.index') }}"><i class="bx bx-right-arrow-alt"></i>Daftar Produk</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='fas fa-shopping-bag'></i>
+                </div>
+                <div class="menu-title">Kelola E-Commerce</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.coupon.index') }}"><i class="bx bxs-coupon"></i>Kupon</a>
                 </li>
             </ul>
         </li>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -60,6 +61,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
         Route::resource('product-size', ProductSizeController::class);
         /* Opsi Tambahan Produk */
         Route::resource('product-option', ProductOptionController::class);
+
+        /* Pengaturan kupon */
+        Route::resource('coupon', CouponController::class);
     });
 });
 
