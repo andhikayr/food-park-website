@@ -86,10 +86,15 @@ class CartController extends Controller
 
     public function cartQtyUpdate(Request $request) : Response
     {
+        $cartItem = Cart::get($request->rowId);
+        $product = Product::findOrFail($cartItem->id);
+        if ($product->quantity < $request->qty) {
+            return response(['status' => 'error', 'message' => 'Jumlah barang tidak boleh kurang dari stok', 'qty' => $cartItem->qty]);
+        }
         try {
-            Cart::update($request->rowId, $request->qty);
+            $cart = Cart::update($request->rowId, $request->qty);
 
-            return response(['product_total' => productTotal($request->rowId)], 200);
+            return response(['product_total' => productTotal($request->rowId), 'qty' => $cart->qty], 200);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => 'Ada sesuatu yang salah'], 500);

@@ -118,10 +118,17 @@
                 let currentValue = parseInt(inputField.val());
                 let rowId = inputField.data("id");
                 inputField.val(currentValue + 1);
+
                 cartQtyUpdate(rowId, inputField.val(), function (response) {
-                    let productTotal = response.product_total;
-                    totalPrice = formatRupiah(productTotal.toString());
-                    inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+                    if (response.status === 'success') {
+                        inputField.val(response.qty);
+                        let productTotal = response.product_total;
+                        totalPrice = formatRupiah(productTotal.toString());
+                        inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+                    } else if (response.status === 'error') {
+                        inputField.val(response.qty);
+                        toastr.error(response.message);
+                    }
                 });
             });
 
@@ -129,12 +136,19 @@
                 let inputField = $(this).siblings(".quantity");
                 let currentValue = parseInt(inputField.val());
                 let rowId = inputField.data("id");
+
                 if (inputField.val() > 1) {
                     inputField.val(currentValue - 1);
                     cartQtyUpdate(rowId, inputField.val(), function (response) {
-                        let productTotal = response.product_total;
-                        totalPrice = formatRupiah(productTotal.toString());
-                        inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+                        if (response.status === 'success') {
+                            inputField.val(response.qty);
+                            let productTotal = response.product_total;
+                            totalPrice = formatRupiah(productTotal.toString());
+                            inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+                        } else if (response.status === 'error') {
+                            inputField.val(response.qty);
+                            toastr.error(response.message);
+                        }
                     });
                 }
             });
