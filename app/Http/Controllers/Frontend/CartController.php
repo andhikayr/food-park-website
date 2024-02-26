@@ -8,6 +8,7 @@ use Cart;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
@@ -19,8 +20,11 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
+        $product = Product::with(['productSizes', 'productOptions'])->findOrFail($request->product_id);
+        if ($product->quantity < $request->quantity) {
+            throw ValidationException::withMessages(['Jumlah barang tidak boleh kurang dari stok']);
+        }
         try {
-            $product = Product::with(['productSizes', 'productOptions'])->findOrFail($request->product_id);
             $productSize = $product->productSizes->where('id', $request->product_size)->first();
             $productOptions = $product->productOptions->whereIn('id', $request->product_option);
 
