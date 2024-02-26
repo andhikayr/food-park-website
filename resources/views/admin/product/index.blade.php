@@ -100,7 +100,7 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 language: {
-                    url: '{{ asset('admin/assets/plugins/datatable/id.json') }}',
+                    url: '{{ asset("admin/assets/plugins/datatable/id.json") }}',
                 },
             });
         });
