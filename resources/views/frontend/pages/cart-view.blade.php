@@ -89,14 +89,14 @@
                 </div>
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__cart_list_footer_button">
-                        <h6>total cart</h6>
-                        <p>subtotal: <span>$124.00</span></p>
-                        <p>delivery: <span>$00.00</span></p>
-                        <p>discount: <span>$10.00</span></p>
-                        <p class="total"><span>total:</span> <span>$134.00</span></p>
-                        <form>
-                            <input type="text" placeholder="Coupon Code">
-                            <button type="submit">apply</button>
+                        <h6>total keranjang</h6>
+                        <p>subtotal: <span>Rp. {{ number_format(cartTotal(), 0, ',', '.') }}</span></p>
+                        <p>pengiriman: <span>$00.00</span></p>
+                        <p>diskon: <span id="discount">Rp. 0</span></p>
+                        <p class="total"><span>total:</span> <span id="final_total">0</span></p>
+                        <form id="coupon_form">
+                            <input type="text" id="coupon_code" name="code" placeholder="Kode Kupon">
+                            <button type="submit">terapkan kupon</button>
                         </form>
                         <a class="common_btn" href=" #">checkout</a>
                     </div>
@@ -204,6 +204,40 @@
                         let errorMessage = xhr.responseJSON.message;
                         hideLoader();
                         toastr.error(errorMessage);
+                    }
+                });
+            }
+
+            $('#coupon_form').on('submit', function (e) {
+                e.preventDefault();
+                let subtotal = getCartTotal();
+                let code = $('#coupon_code').val();
+                couponApply(code, subtotal);
+            });
+
+            function couponApply(code, subtotal) {
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ route("apply-coupon") }}',
+                    data: {
+                        code: code,
+                        subtotal: subtotal
+                    },
+                    beforeSend: function () {
+                        showLoader();
+                    },
+                    success: function (response) {
+                        $('#discount').text("Rp. " + formatRupiah(response.discount.toString()));
+                        $('#final_total').text("Rp. " + formatRupiah(response.finalTotal.toString()));
+                        toastr.success(response.message);
+                    },
+                    error: function (xhr, status, error) {
+                        let errorMessage = xhr.responseJSON.message;
+                        hideLoader();
+                        toastr.error(errorMessage);
+                    },
+                    complete: function () {
+                        hideLoader();
                     }
                 });
             }

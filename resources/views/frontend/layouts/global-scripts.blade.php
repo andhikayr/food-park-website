@@ -96,4 +96,9 @@
             }
         });
     }
+
+    /** Ambil harga total keranjang **/
+    function getCartTotal() {
+        return parseInt("{{ cartTotal() }}");
+    }
 </script>

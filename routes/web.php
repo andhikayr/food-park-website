@@ -26,8 +26,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+/* Routes Admin */
 
-// Admin Routes
 Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('login', [DashboardController::class, 'login']);
     Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
@@ -67,6 +67,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
     });
 });
 
+/* Route Frontend */
+
 // Frontend index
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 
@@ -87,6 +89,10 @@ Route::get('cart-product-remove/{rowId}', [CartController::class, 'cartProductRe
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart-update-qty', [CartController::class, 'cartQtyUpdate'])->name('cart.quantity-update');
 Route::get('/cart-destroy', [CartController::class, 'cartDestroy'])->name('cart.destroy');
+
+// Route kupon
+Route::post('apply-coupon', [FrontendController::class, 'applyCoupon'])->name('apply-coupon');
+Route::get('remove-coupon', [FrontendController::class,'removeCoupon'])->name('remove-coupon');
 
 // Frontend user dashboard
 Route::prefix('dashboard')->as('user.')->middleware('auth')->controller(FrontendDashboardController::class)->group(function () {
