@@ -38,7 +38,13 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->code }}</td>
                             <td>{{ $item->quantity }}</td>
-                            <td>{{ $item->discount_type }}</td>
+                            <td>
+                                @if ($item->discount_type === 'percent')
+                                    Persen
+                                @else
+                                    Jumlah (Rp.)
+                                @endif
+                            </td>
                             <td>{{ $item->discount }}</td>
                             @php
                                 \Carbon\Carbon::setLocale('id');
