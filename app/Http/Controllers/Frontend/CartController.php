@@ -103,10 +103,13 @@ class CartController extends Controller
 
     public function cartDestroy()
     {
-        Cart::destroy();
-        session()->forget('coupon');
-
-        Alert::success('Sukses', 'Keranjang anda telah berhasil dihapus');
+        if (count(Cart::content()) <= 0) {
+            Alert::error('Eror', 'Tidak ada produk apapun di keranjang anda');
+        } else {
+            Cart::destroy();
+            session()->forget('coupon');
+            Alert::success('Sukses', 'Keranjang anda telah berhasil dihapus');
+        }
         return back();
     }
 }
