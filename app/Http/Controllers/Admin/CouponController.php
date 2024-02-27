@@ -55,15 +55,22 @@ class CouponController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $coupon = Coupon::findOrFail($id);
+        return view('admin.coupon.edit', compact('coupon'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CouponRequest $request, string $id)
     {
-        //
+        $couponUpdate = Coupon::findOrFail($id);
+        $couponData = $request->validated();
+
+        $couponUpdate->update($couponData);
+
+        Alert::success('Berhasil', 'Kupon berhasil diubah');
+        return to_route('admin.coupon.index');
     }
 
     /**
@@ -71,6 +78,14 @@ class CouponController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $coupon = Coupon::findOrFail($id);
+            $coupon->delete();
+
+            Alert::success('Berhasil', 'Kupon berhasil dihapus');
+            return response(['status' => 'success', 'message' => 'Kupon berhasil dihapus']);
+        } catch (\Exception $e) {
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
     }
 }
