@@ -92,8 +92,20 @@
                         <h6>total keranjang</h6>
                         <p>subtotal: <span id="subtotal">Rp. {{ number_format(cartTotal(), 0, ',', '.') }}</span></p>
                         <p>pengiriman: <span>$00.00</span></p>
-                        <p>diskon: <span id="discount">Rp. 0</span></p>
-                        <p class="total"><span>total:</span> <span id="final_total">0</span></p>
+                        <p>diskon: <span id="discount">Rp.
+                            @if (isset(session()->get('coupon')['discount']))
+                                {{ number_format(session()->get('coupon')['discount'], 0, ',', '.') }}
+                            @else
+                                0
+                            @endif
+                        </span></p>
+                        <p class="total"><span>total:</span> <span id="final_total"> Rp.
+                            @if (isset(session()->get('coupon')['discount']))
+                                {{ number_format(cartTotal() - session()->get('coupon')['discount'], 0, ',', '.') }}
+                            @else
+                            {{ number_format(cartTotal(), 0, ',', '.') }}
+                            @endif
+                        </span></p>
                         <form id="coupon_form">
                             <input type="text" id="coupon_code" name="code" placeholder="Kode Kupon">
                             <button type="submit">terapkan kupon</button>
