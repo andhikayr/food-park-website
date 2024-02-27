@@ -70,6 +70,16 @@ class FrontendController extends Controller
 
         session()->put('coupon', ['code' => $code, 'discount' => $discount]);
 
-        return response(['message' => 'Kupon berhasil diterapkan', 'discount' => $discount, 'finalTotal' => $finalTotal]);
+        return response(['message' => 'Kupon berhasil diterapkan', 'discount' => $discount, 'finalTotal' => $finalTotal, 'coupon_code' => $code]);
+    }
+
+    public function destroyCoupon() {
+        try {
+            session()->forget('coupon');
+            return response(['message' => 'Kupon berhasil dihapus', 'grand_cart_total' => grandCartTotal()]);
+        } catch (\Exception $e) {
+            logger($e);
+            return response(['message' => 'Ada sesuatu yang salah'], 500);
+        }
     }
 }
