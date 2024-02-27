@@ -90,7 +90,7 @@
                 <div class="col-lg-4 wow fadeInUp" data-wow-duration="1s">
                     <div class="fp__cart_list_footer_button">
                         <h6>total keranjang</h6>
-                        <p>subtotal: <span>Rp. {{ number_format(cartTotal(), 0, ',', '.') }}</span></p>
+                        <p>subtotal: <span id="subtotal">Rp. {{ number_format(cartTotal(), 0, ',', '.') }}</span></p>
                         <p>pengiriman: <span>$00.00</span></p>
                         <p>diskon: <span id="discount">Rp. 0</span></p>
                         <p class="total"><span>total:</span> <span id="final_total">0</span></p>
@@ -112,6 +112,8 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
+            var cartTotal = 0;
+
             // Tambah dan kurangi jumlah produk yang dibeli
             $('.increment').on('click', function () {
                 let inputField = $(this).siblings(".quantity");
@@ -125,6 +127,8 @@
                         let productTotal = response.product_total;
                         totalPrice = formatRupiah(productTotal.toString());
                         inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+                        cartTotal = response.cart_total;
+                        $('#subtotal').text("Rp. " + formatRupiah(cartTotal.toString()));
                     } else if (response.status === 'error') {
                         inputField.val(response.qty);
                         toastr.error(response.message);
@@ -145,6 +149,8 @@
                             let productTotal = response.product_total;
                             totalPrice = formatRupiah(productTotal.toString());
                             inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+                            cartTotal = response.cart_total;
+                            $('#subtotal').text("Rp. " + formatRupiah(cartTotal.toString()));
                         } else if (response.status === 'error') {
                             inputField.val(response.qty);
                             toastr.error(response.message);
@@ -199,6 +205,8 @@
                             toastr.success(response.message);
                             hideLoader();
                         });
+                        cartTotal = response.cart_total;
+                        $('#subtotal').text("Rp. " + formatRupiah(cartTotal.toString()));
                     },
                     error: function (xhr, status, error) {
                         let errorMessage = xhr.responseJSON.message;
@@ -210,7 +218,7 @@
 
             $('#coupon_form').on('submit', function (e) {
                 e.preventDefault();
-                let subtotal = getCartTotal();
+                let subtotal = cartTotal;
                 let code = $('#coupon_code').val();
                 couponApply(code, subtotal);
             });
