@@ -48,7 +48,7 @@
                         <div class="col-md-6">
                             <label for="expire_date" class="form-label">Tanggal Kadaluarsa *</label>
                             <input type="date" class="form-control" id="expire_date"
-                                name="expire_date" required value="{{ $coupon->expire_date }}">
+                                name="expire_date" min="{{ date('Y-m-d') }}" required value="{{ $coupon->expire_date }}">
                         </div>
                         <div class="col-md-6">
                             <label for="discount_type" class="form-label">Tipe Diskon *</label>

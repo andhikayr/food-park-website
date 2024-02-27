@@ -26,10 +26,17 @@ class CouponRequest extends FormRequest
             'code' => 'required|max:50',
             'quantity' =>'required',
             'min_purchase_amount' =>'required|max:255',
-            'expire_date' =>'required|max:255|date',
+            'expire_date' =>'required|max:255|date|after_or_equal:today',
             'discount_type' =>'required',
             'discount' =>'required',
             'status' =>'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'expire_date.after_or_equal' => 'Tanggal kadaluarsa tidak boleh sebelum tanggal hari ini',
         ];
     }
 }
