@@ -112,7 +112,7 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-            var cartTotal = 0;
+            var cartTotal = parseInt("{{ cartTotal() }}");
 
             // Tambah dan kurangi jumlah produk yang dibeli
             $('.increment').on('click', function () {
