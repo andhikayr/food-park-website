@@ -139,8 +139,11 @@
                         let productTotal = response.product_total;
                         totalPrice = formatRupiah(productTotal.toString());
                         inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+
                         cartTotal = response.cart_total;
+                        grandCartTotal = response.grand_cart_total;
                         $('#subtotal').text("Rp. " + formatRupiah(cartTotal.toString()));
+                        $('#final_total').text("Rp. " + formatRupiah(grandCartTotal.toString()));
                     } else if (response.status === 'error') {
                         inputField.val(response.qty);
                         toastr.error(response.message);
@@ -161,8 +164,11 @@
                             let productTotal = response.product_total;
                             totalPrice = formatRupiah(productTotal.toString());
                             inputField.closest("tr").find(".product_cart_total").text("Rp. " + totalPrice);
+
                             cartTotal = response.cart_total;
+                            grandCartTotal = response.grand_cart_total;
                             $('#subtotal').text("Rp. " + formatRupiah(cartTotal.toString()));
+                            $('#final_total').text("Rp. " + formatRupiah(grandCartTotal.toString()));
                         } else if (response.status === 'error') {
                             inputField.val(response.qty);
                             toastr.error(response.message);
@@ -214,11 +220,13 @@
                     },
                     success: function (response) {
                         updateSidebarCart(function () {
+                            cartTotal = response.cart_total;
+                            grandCartTotal = response.grand_cart_total;
+                            $('#subtotal').text("Rp. " + formatRupiah(cartTotal.toString()));
+                            $('#final_total').text("Rp. " + formatRupiah(grandCartTotal.toString()));
                             toastr.success(response.message);
                             hideLoader();
                         });
-                        cartTotal = response.cart_total;
-                        $('#subtotal').text("Rp. " + formatRupiah(cartTotal.toString()));
                     },
                     error: function (xhr, status, error) {
                         let errorMessage = xhr.responseJSON.message;

@@ -78,7 +78,7 @@ class CartController extends Controller
         try {
             Cart::remove($rowId);
 
-            return response(['status' => 'success', 'message' => 'Produk berhasil dihapus dari keranjang', 'cart_total' => cartTotal()], 200);
+            return response(['status' => 'success', 'message' => 'Produk berhasil dihapus dari keranjang', 'cart_total' => cartTotal(), 'grand_cart_total' => grandCartTotal()], 200);
         } catch (\Exception $e) {
             return response(['status' => 'error', 'message' => 'Ada sesuatu yang salah'], 500);
         }
@@ -94,7 +94,7 @@ class CartController extends Controller
         try {
             $cart = Cart::update($request->rowId, $request->qty);
 
-            return response(['status' => 'success', 'product_total' => productTotal($request->rowId), 'qty' => $cart->qty, 'cart_total' => cartTotal()], 200);
+            return response(['status' => 'success', 'product_total' => productTotal($request->rowId), 'qty' => $cart->qty, 'cart_total' => cartTotal(), 'grand_cart_total' => grandCartTotal()], 200);
         } catch (\Exception $e) {
             logger($e);
             return response(['status' => 'error', 'message' => 'Ada sesuatu yang salah'], 500);
@@ -104,6 +104,7 @@ class CartController extends Controller
     public function cartDestroy()
     {
         Cart::destroy();
+        session()->forget('coupon');
 
         Alert::success('Sukses', 'Keranjang anda telah berhasil dihapus');
         return back();
